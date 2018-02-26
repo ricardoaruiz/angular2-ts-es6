@@ -15,19 +15,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Veiculo_1 = __importDefault(require("./Veiculo"));
 /**
- * Classe que representa um carro
- *
- * Os modificadores de acesso 'private', 'public' são
- * do TS quando o arquivo é transpilado mesmo se fosse para o ES6
- * não teria esse controle de visibilidade.
+ * Classe que representa uma moto.
 */
-var Carro = /** @class */ (function (_super) {
-    __extends(Carro, _super);
-    function Carro(modelo, numeroDePortas) {
-        var _this = _super.call(this, modelo) || this;
-        _this.numeroDePortas = numeroDePortas;
-        return _this;
+var Moto = /** @class */ (function (_super) {
+    __extends(Moto, _super);
+    function Moto(modelo) {
+        return _super.call(this, modelo) || this;
     }
-    return Carro;
+    return Moto;
 }(Veiculo_1.default));
-exports.default = Carro;
+exports.default = Moto;

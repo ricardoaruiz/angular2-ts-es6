@@ -1,3 +1,5 @@
+import Veiculo from "./Veiculo";
+
 /** 
  * Classe que representa um carro
  * 
@@ -5,31 +7,13 @@
  * do TS quando o arquivo é transpilado mesmo se fosse para o ES6
  * não teria esse controle de visibilidade.
 */
-export default class Carro {
+export default class Carro extends Veiculo {
 
-    private modelo: string;
-    private numeroDePortas: number;
-    private velocidade: number = 0;
+    private numeroDePortas: number;    
 
     constructor(modelo: string, numeroDePortas: number) {
-        this.modelo = modelo;
+        super(modelo);
         this.numeroDePortas = numeroDePortas;
-    }
-
-    public acelerar(): void {
-        this.velocidade = this.velocidade + 10;
-    }
-
-    public parar(): void {
-        this.velocidade = 0;
-    }
-
-    public velocidadeAtual(): number {
-        return this.velocidade;
-    }
-
-    public obterModelo(): string {
-        return this.modelo;
     }
 
 }
