@@ -22,6 +22,10 @@ var Moto = /** @class */ (function (_super) {
     function Moto(modelo) {
         return _super.call(this, modelo) || this;
     }
+    /**Método sobrescrito da class Veiculo */
+    Moto.prototype.acelerar = function () {
+        this.velocidade = this.velocidade + 15;
+    };
     return Moto;
 }(Veiculo_1.default));
 exports.default = Moto;

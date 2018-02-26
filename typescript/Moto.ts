@@ -9,6 +9,11 @@ class Moto extends Veiculo {
         super(modelo);
     }
 
+    /**Método sobrescrito da class Veiculo */
+    acelerar(): void {
+        this.velocidade = this.velocidade + 15;
+    }
+
 }
 
 export default Moto;

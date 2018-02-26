@@ -4,7 +4,7 @@
 export default class Veiculo {
     
     private modelo: string;
-    private velocidade: number = 0;
+    protected velocidade: number = 0;
 
     constructor(modelo: string) {
         this.modelo = modelo;
