@@ -28,6 +28,10 @@ class Carro {
         return this.velocidade;
     }
 
+    public obterModelo(): string {
+        return this.modelo;
+    }
+
 }
 
 /** 
@@ -52,10 +56,55 @@ class Concessionaria {
 
 }
 
-let concessionaria = new Concessionaria('Avenida Paulista');
-console.log(concessionaria);
+/** 
+ * Classe Pessoa
+*/
+class Pessoa {
 
-let carroA = new Carro("Fiesta", 4);
-console.log(carroA);
-carroA.acelerar();
-console.log(carroA);
+    private nome: string;
+    private carroPreferido: Carro;
+    private carro: Carro;
+
+    constructor(nome: string, carroPreferido: Carro, carro: Carro) {
+        this.nome = nome;
+        this.carroPreferido = carroPreferido;
+        this.carro = carro;
+    }
+
+    public dizerNome(): string {
+        return this.nome;
+    }
+
+    public dizerCarroPreferido(): Carro {
+        return this.carroPreferido;
+    }
+
+    public informarCarroPreferido(carro: Carro): void {
+        this.carroPreferido = carro;
+    }
+
+    public dizerCarroQueTem(): Carro {
+        return this.carro;
+    }
+
+    public comprarCarro(carro: Carro): void {
+        this.carro = carro;
+    }
+
+}
+
+let concessionaria = new Concessionaria('Avenida Paulista');
+
+let fiesta = new Carro("Fiesta", 4);
+let upTsi = new Carro('Up TSI', 4);
+let pessoa = new Pessoa('Ricardo Ruiz', upTsi, fiesta);
+
+console.log('Meu nome é: ' + pessoa.dizerNome());
+console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
+console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
+
+pessoa.comprarCarro(upTsi)
+
+console.log('Meu nome é: ' + pessoa.dizerNome());
+console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
+console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());

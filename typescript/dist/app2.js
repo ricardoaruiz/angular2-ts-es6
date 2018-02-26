@@ -21,6 +21,9 @@ var Carro = /** @class */ (function () {
     Carro.prototype.velocidadeAtual = function () {
         return this.velocidade;
     };
+    Carro.prototype.obterModelo = function () {
+        return this.modelo;
+    };
     return Carro;
 }());
 /**
@@ -38,9 +41,40 @@ var Concessionaria = /** @class */ (function () {
     };
     return Concessionaria;
 }());
+/**
+ * Classe Pessoa
+*/
+var Pessoa = /** @class */ (function () {
+    function Pessoa(nome, carroPreferido, carro) {
+        this.nome = nome;
+        this.carroPreferido = carroPreferido;
+        this.carro = carro;
+    }
+    Pessoa.prototype.dizerNome = function () {
+        return this.nome;
+    };
+    Pessoa.prototype.dizerCarroPreferido = function () {
+        return this.carroPreferido;
+    };
+    Pessoa.prototype.informarCarroPreferido = function (carro) {
+        this.carroPreferido = carro;
+    };
+    Pessoa.prototype.dizerCarroQueTem = function () {
+        return this.carro;
+    };
+    Pessoa.prototype.comprarCarro = function (carro) {
+        this.carro = carro;
+    };
+    return Pessoa;
+}());
 var concessionaria = new Concessionaria('Avenida Paulista');
-console.log(concessionaria);
-var carroA = new Carro("Fiesta", 4);
-console.log(carroA);
-carroA.acelerar();
-console.log(carroA);
+var fiesta = new Carro("Fiesta", 4);
+var upTsi = new Carro('Up TSI', 4);
+var pessoa = new Pessoa('Ricardo Ruiz', upTsi, fiesta);
+console.log('Meu nome é: ' + pessoa.dizerNome());
+console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
+console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
+pessoa.comprarCarro(upTsi);
+console.log('Meu nome é: ' + pessoa.dizerNome());
+console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
+console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
