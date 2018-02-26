@@ -79,4 +79,17 @@ var listaDeCarros = [carroFiesta, carroUp, carroOnix];
 // criação de uma concessionária
 var concessionaria = new Concessionaria('Av. Paulista', listaDeCarros);
 // exibir a lista de carros
+console.log('===Concessionária===');
 console.log(concessionaria);
+// criando uma pessoa
+var cliente = new Pessoa('Ricardo', carroUp, carroFiesta);
+console.log('===Cliente===');
+console.log(cliente);
+// mostrar o carro preferido da pessoa
+console.log('O carro preferido do ' + cliente.dizerNome() + ' é ' + cliente.dizerCarroPreferido().obterModelo());
+concessionaria.mostrarListaDeCarros().map(function (carro) {
+    if (carro.obterModelo() === cliente.dizerCarroPreferido().obterModelo()) {
+        cliente.comprarCarro(carro);
+    }
+});
+console.log(cliente.dizerCarroQueTem());
