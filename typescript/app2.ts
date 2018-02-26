@@ -1,5 +1,9 @@
 /** 
  * Classe que representa um carro
+ * 
+ * Os modificadores de acesso 'private', 'public' são
+ * do TS quando o arquivo é transpilado mesmo se fosse para o ES6
+ * não teria esse controle de visibilidade.
 */
 class Carro {
 
@@ -25,6 +29,31 @@ class Carro {
     }
 
 }
+
+/** 
+ * Classe concessionaria
+*/
+class Concessionaria {
+
+    private endereco: string;
+    private listaDeCarros: Carro[];
+
+    constructor(endereco: string){
+        this.endereco = endereco;
+    }
+
+    public fornecerEndereco() {
+        return this.endereco;
+    }
+
+    public mostrarListaDeCarros(): Carro[] {
+        return this.listaDeCarros;
+    }
+
+}
+
+let concessionaria = new Concessionaria('Avenida Paulista');
+console.log(concessionaria);
 
 let carroA = new Carro("Fiesta", 4);
 console.log(carroA);
