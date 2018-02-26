@@ -40,17 +40,18 @@ class Carro {
 class Concessionaria {
 
     private endereco: string;
-    private listaDeCarros: Carro[];
+    private listaDeCarros: Array<Carro>;
 
-    constructor(endereco: string){
+    constructor(endereco: string, listaDeCarros: Array<Carro>){
         this.endereco = endereco;
+        this.listaDeCarros = listaDeCarros;
     }
 
     public fornecerEndereco() {
         return this.endereco;
     }
 
-    public mostrarListaDeCarros(): Carro[] {
+    public mostrarListaDeCarros(): Array<Carro> {
         return this.listaDeCarros;
     }
 
@@ -92,19 +93,18 @@ class Pessoa {
     }
 
 }
+//Regras de negócio - Parte 1
+// criar carros
+let carroFiesta = new Carro('Fiesta', 4);
+let carroUp = new Carro('Up TSI', 4);
+let carroOnix = new Carro('Onix LTZ', 4);
 
-let concessionaria = new Concessionaria('Avenida Paulista');
+// montar lista de carros - as duas formas abaixo são válidas.
+let listaDeCarros: Array<Carro> = [ carroFiesta, carroUp, carroOnix];
+//let listaDeCarros: Carro[] = [ carroFiesta, carroUp, carroOnix];
 
-let fiesta = new Carro("Fiesta", 4);
-let upTsi = new Carro('Up TSI', 4);
-let pessoa = new Pessoa('Ricardo Ruiz', upTsi, fiesta);
+// criação de uma concessionária
+let concessionaria = new Concessionaria('Av. Paulista', listaDeCarros);
 
-console.log('Meu nome é: ' + pessoa.dizerNome());
-console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
-console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
-
-pessoa.comprarCarro(upTsi)
-
-console.log('Meu nome é: ' + pessoa.dizerNome());
-console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
-console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
+// exibir a lista de carros
+console.log(concessionaria);

@@ -30,8 +30,9 @@ var Carro = /** @class */ (function () {
  * Classe concessionaria
 */
 var Concessionaria = /** @class */ (function () {
-    function Concessionaria(endereco) {
+    function Concessionaria(endereco, listaDeCarros) {
         this.endereco = endereco;
+        this.listaDeCarros = listaDeCarros;
     }
     Concessionaria.prototype.fornecerEndereco = function () {
         return this.endereco;
@@ -67,14 +68,15 @@ var Pessoa = /** @class */ (function () {
     };
     return Pessoa;
 }());
-var concessionaria = new Concessionaria('Avenida Paulista');
-var fiesta = new Carro("Fiesta", 4);
-var upTsi = new Carro('Up TSI', 4);
-var pessoa = new Pessoa('Ricardo Ruiz', upTsi, fiesta);
-console.log('Meu nome é: ' + pessoa.dizerNome());
-console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
-console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
-pessoa.comprarCarro(upTsi);
-console.log('Meu nome é: ' + pessoa.dizerNome());
-console.log('Meu carro é: ' + pessoa.dizerCarroQueTem().obterModelo());
-console.log('Meu carro preferido é: ' + pessoa.dizerCarroPreferido().obterModelo());
+//Regras de negócio - Parte 1
+// criar carros
+var carroFiesta = new Carro('Fiesta', 4);
+var carroUp = new Carro('Up TSI', 4);
+var carroOnix = new Carro('Onix LTZ', 4);
+// montar lista de carros - as duas formas abaixo são válidas.
+var listaDeCarros = [carroFiesta, carroUp, carroOnix];
+//let listaDeCarros: Carro[] = [ carroFiesta, carroUp, carroOnix];
+// criação de uma concessionária
+var concessionaria = new Concessionaria('Av. Paulista', listaDeCarros);
+// exibir a lista de carros
+console.log(concessionaria);
