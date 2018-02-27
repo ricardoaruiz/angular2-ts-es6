@@ -18,7 +18,7 @@ export class PainelComponent implements OnInit {
   public rodadaFrase: Frase;
 
   constructor() { 
-    this.rodadaFrase = this.frases[this.rodada];
+    this.proximaFrase();
   }
 
   ngOnInit() {
@@ -29,6 +29,15 @@ export class PainelComponent implements OnInit {
   }
 
   public verificarResposta(): void {
-    console.log('verificarResposta: ' + this.resposta);
+    if (this.rodadaFrase.frasePtBr === this.resposta) {
+      this.rodada++;
+      this.proximaFrase();
+    } else {
+      alert('Tradução errada.');
+    }
+  }
+
+  private proximaFrase(): void {
+    this.rodadaFrase = this.frases[this.rodada];
   }
 }
