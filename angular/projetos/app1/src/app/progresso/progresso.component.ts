@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-progresso',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgressoComponent implements OnInit {
 
-  public progresso: number = 0;
+  /* Parâmetro que o componente espera ao ser utilizado
+     Essa passagem de parâmetro é feita do componente pai (o que está 
+     usando esse componente) através do Property Binding conform exemplo abaixo:
+      Ex: <app-progresso [progressoParam]="progresso"></app-progresso> 
+  */
+  @Input('progressoParam')
+  public progressoValor: number = 0;
 
   constructor() { }
 
