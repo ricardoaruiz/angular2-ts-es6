@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Frase } from '../shared/frase.model';
 import { FRASES } from './frases-mock';
@@ -19,6 +19,17 @@ export class PainelComponent implements OnInit {
 
   public progresso: number = 0;
   public tentativas: number = 3;
+
+  /**
+   * Utilizado para emitir um evento para o componente pai 
+   * O componente pai quando instanciar esse componente fará da seguinte forma:
+   *  <app-painel (encerrarJogo)="encerrarJogo($event)"></app-painel>
+   *
+   * No app.component.ts tem um método que chama encerrarJogo que será executado
+   * quando o evento for disparado pelo filho.
+   * */
+  @Output()
+  public encerrarJogo: EventEmitter<string> = new EventEmitter();
 
   constructor() { 
     this.proximaFrase();
@@ -51,6 +62,7 @@ export class PainelComponent implements OnInit {
     } else {
       this.atualizaProgresso(true);
       this.limparResposta();
+      this.encerrarJogo.emit('vitoria');
     }
   }
 
@@ -61,7 +73,7 @@ export class PainelComponent implements OnInit {
   private incrementaRodadaErro(): void {
     this.tentativas--;
     if (this.tentativas === -1) {
-      alert('Fim de jogo');
+      this.encerrarJogo.emit('derrota');
     }
   }
 
