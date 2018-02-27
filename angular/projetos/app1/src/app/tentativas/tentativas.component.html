@@ -1,4 +1,2 @@
 <!-- Aqui está sendo utilizado o Property Binding -->
-<img [src]="coracaoCheio" />
-<img [src]="coracaoCheio" />
-<img [src]="coracaoCheio" />
+<img *ngFor="let coracao of coracoes" [src]="coracao.exibeCoracao()" />
