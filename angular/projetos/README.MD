@@ -1,7 +1,8 @@
-- Projeto app1 - primeiro projeto do treinamento
-    - foi criado utilizando o ng cli com o seguinte comando:
-        estando dentro da pasta projetos foi executado:
-            ng new app1
+- **Projeto App1 - primeiro projeto do treinamento**
+
+    - Foi criado utilizando o ng cli com o seguinte comando:
+        Estando dentro da pasta projetos foi executado:
+            - **ng new app1**
 
     - **App1 - Criando o componente Topo manualmente**
 
@@ -57,4 +58,15 @@
         - O componente foi criado utilizando a linha de comando do 'ng cli':
             - **ng g component painel**
 
+        Quando o componente é criado via linha de comando, o componente já é adicionado no módulo a qual pertence, que nesse caso seria o módulo principal 'app.module.ts'
+
+    -- **App1 - Criando o componente Tentativas e Progresso**
+
+        - O componente foi criado utilizando a linha de comando do 'ng cli':
+            - **ng g c tentativas --spec=false**
+
+            **g - generate**
+            **c - component**
+            **--spec=false - não gera o arquivo de teste**
+            
         Quando o componente é criado via linha de comando, o componente já é adicionado no módulo a qual pertence, que nesse caso seria o módulo principal 'app.module.ts'
