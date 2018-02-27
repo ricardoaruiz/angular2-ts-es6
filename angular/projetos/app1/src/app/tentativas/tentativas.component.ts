@@ -9,7 +9,7 @@ import { Coracao } from '../shared/coracao.model';
 })
 export class TentativasComponent implements OnInit {
 
-  @Input()
+  @Input('tentativarParam')
   public tentativas: number;
 
   public coracoes: Coracao[] = [
