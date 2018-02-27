@@ -33,12 +33,9 @@ export class PainelComponent implements OnInit {
 
   public verificarResposta(): void {
     if (this.rodadaFrase.frasePtBr === this.resposta) {
-      this.incrementaRodada();
+      this.incrementaRodadaSucesso();
     } else {
-      this.tentativas--;
-      if (this.tentativas === -1) {
-        alert('Fim de jogo');
-      }
+      this.incrementaRodadaErro();
     }
   }
   
@@ -46,7 +43,7 @@ export class PainelComponent implements OnInit {
    * A cada resposta correta, a rodada é incrementada e o progresso da barra
    * também, mas esse com base no número de frases existentes.
   */
-  private incrementaRodada(): void {
+  private incrementaRodadaSucesso(): void {
     this.rodada++;
     if (this.rodada < 4) {
       this.atualizaProgresso();
@@ -54,6 +51,17 @@ export class PainelComponent implements OnInit {
     } else {
       this.atualizaProgresso(true);
       this.limparResposta();
+    }
+  }
+
+  /** 
+   * A cada resposta errada, decrementa as tentativas e verifica se 
+   * a quantidade de tentativas não esgotou.
+  */
+  private incrementaRodadaErro(): void {
+    this.tentativas--;
+    if (this.tentativas === -1) {
+      alert('Fim de jogo');
     }
   }
 
