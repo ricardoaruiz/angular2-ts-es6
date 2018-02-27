@@ -48,8 +48,14 @@ export class PainelComponent implements OnInit {
   */
   private incrementaRodada(): void {
     this.rodada++;
-    this.progresso = this.progresso + (100 / this.frases.length);
-    this.proximaFrase();
+    if (this.rodada < 4) {
+      this.progresso = this.progresso + (100 / this.frases.length);
+      this.proximaFrase();
+    } else {
+      this.progresso = 100;
+      this.limparResposta();
+      alert('Você venceu!');
+    }
   }
 
   /** 
@@ -57,6 +63,10 @@ export class PainelComponent implements OnInit {
   */
   private proximaFrase(): void {
     this.rodadaFrase = this.frases[this.rodada];
+    this.limparResposta();
+  }
+
+  private limparResposta(): void {
     this.resposta = '';
   }
 }
