@@ -3,7 +3,7 @@
         estando dentro da pasta projetos foi executado:
             ng new app1
 
-    - **App1** - Criando o componente Topo manualmente
+    - **App1 - Criando o componente Topo manualmente**
 
         - O componente foi criado não utilizando a linha de comando do 'ng cli'.
 
@@ -51,3 +51,10 @@
                                   color:red;
                                 }     
                             `] (com crase 'template string' e nesse caso podemos pular linhas)
+
+    - **App1 - Criando o componente Painel via CLI**
+
+        - O componente foi criado utilizando a linha de comando do 'ng cli':
+            - **ng g component painel**
+
+        Quando o componente é criado via linha de comando, o componente já é adicionado no módulo a qual pertence, que nesse caso seria o módulo principal 'app.module.ts'
