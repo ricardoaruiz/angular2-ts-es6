@@ -60,13 +60,28 @@
 
         Quando o componente é criado via linha de comando, o componente já é adicionado no módulo a qual pertence, que nesse caso seria o módulo principal 'app.module.ts'
 
-    -- **App1 - Criando o componente Tentativas e Progresso**
+    - **App1 - Criando o componente Tentativas e Progresso**
 
-        - O componente foi criado utilizando a linha de comando do 'ng cli':
-            - **ng g c tentativas --spec=false**
-
+        - O componente foi criado utilizando a linha de comando do ng cli:
+            **ng g c tentativas --spec=false**
             **g - generate**
             **c - component**
             **--spec=false - não gera o arquivo de teste**
-            
+
         Quando o componente é criado via linha de comando, o componente já é adicionado no módulo a qual pertence, que nesse caso seria o módulo principal 'app.module.ts'
+
+    - **App1 - Instalando o Bootstrap no projeto**
+
+        - **npm install --save bootstrap@4.0.0-alpha.6**
+
+        Após baixar as dependências do Bootstrap, será necessário alterar o arquivo '.angular.cli' incluindo o css do bootstrap da seguinte forma:
+
+            ...
+            "styles": [
+                "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "styles.css"
+            ],
+            ...
+
+        Lembrando que o caminho deve ser relativo ao diretório 'src' que é o diretório root definido no arquivo '.angular.cli'
+
