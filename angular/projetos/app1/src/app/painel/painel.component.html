@@ -20,7 +20,8 @@
                 <p>{{rodadaFrase.fraseEng}}</p>
                 <div class="form-group">
                     <textarea class="form-control" rows="3" 
-                        (input)="atuallizaResposta($event)"></textarea>
+                        (input)="atuallizaResposta($event)"
+                        [value]="resposta"></textarea>
                 </div>                
             </div>
         </div>

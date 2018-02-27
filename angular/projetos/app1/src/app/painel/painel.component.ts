@@ -12,7 +12,7 @@ export class PainelComponent implements OnInit {
 
   public instrucao: string = 'Traduza a frase:'
   public frases: Frase[] = FRASES;
-  public resposta: string;
+  public resposta: string = '';
 
   public rodada: number = 0;
   public rodadaFrase: Frase;
@@ -53,5 +53,6 @@ export class PainelComponent implements OnInit {
   */
   private proximaFrase(): void {
     this.rodadaFrase = this.frases[this.rodada];
+    this.resposta = '';
   }
 }
