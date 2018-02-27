@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { Coracao } from '../shared/coracao.model';
 
@@ -7,7 +7,7 @@ import { Coracao } from '../shared/coracao.model';
   templateUrl: './tentativas.component.html',
   styleUrls: ['./tentativas.component.css']
 })
-export class TentativasComponent implements OnInit {
+export class TentativasComponent implements OnInit, OnChanges {
 
   @Input('tentativarParam')
   public tentativas: number;
@@ -20,8 +20,19 @@ export class TentativasComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  /** 
+   * Executado durante o processo de decoração dos valores recebidos de 
+   * componentes pais para os compontens filhos. Sempre que existe input
+   * de dados ou os dados são alterados esse método é executado.
+   * Ele é executado antes do ngOnInit no ciclo de vida e depois do construtor
+  */
+  ngOnChanges() {
     console.log('tentativas recebidas ' + this.tentativas)
   }
+
+  ngOnInit() {
+
+  }
+  
 
 }
