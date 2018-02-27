@@ -4,11 +4,11 @@
         <!-- Primeira lina com os componentes progresso e tentativas -->
         <div class="row">
             <div class="col-sm-6">                
-                <app-progresso [progressoParam]="progresso"></app-progresso>
+                <app-progresso [progressoParam]='progresso'></app-progresso>
             </div>
             <div class="col-sm-6">
                 <div class="d-flex justify-content-end">
-                    <app-tentativas></app-tentativas>
+                    <app-tentativas [tentativas]='tentativas'></app-tentativas>
                 </div>
             </div>
         </div>
