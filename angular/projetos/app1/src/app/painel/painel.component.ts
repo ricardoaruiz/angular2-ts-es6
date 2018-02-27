@@ -49,12 +49,11 @@ export class PainelComponent implements OnInit {
   private incrementaRodada(): void {
     this.rodada++;
     if (this.rodada < 4) {
-      this.progresso = this.progresso + (100 / this.frases.length);
+      this.atualizaProgresso();
       this.proximaFrase();
     } else {
-      this.progresso = 100;
+      this.atualizaProgresso(true);
       this.limparResposta();
-      alert('Você venceu!');
     }
   }
 
@@ -66,7 +65,24 @@ export class PainelComponent implements OnInit {
     this.limparResposta();
   }
 
+  /** 
+   * Limpa a resposta dada pelo jogador.
+  */
   private limparResposta(): void {
     this.resposta = '';
+  }
+
+  /** 
+   * Atualiza o percentual de progresso da barra de progresso
+   * 
+   * @param completo - indica se a o processo foi completado se não 
+   * calcula o processo atual baseado na quantidade de frases
+  */
+  private atualizaProgresso(completo: boolean = false): void {
+    if (!completo) {
+      this.progresso = this.progresso + (100 / this.frases.length);    
+    } else {
+      this.progresso = 100;
+    }
   }
 }

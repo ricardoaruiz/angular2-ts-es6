@@ -27,8 +27,7 @@ export class TentativasComponent implements OnInit, OnChanges {
    * Ele é executado antes do ngOnInit no ciclo de vida e depois do construtor
   */
   ngOnChanges() {
-    console.log('tentativas recebidas ' + this.tentativas)
-    if (this.tentativas !== this.coracoes.length) {
+    if (this.tentativas !== this.coracoes.length && this.tentativas > -1) {
       let indice = this.coracoes.length - this.tentativas;
       this.coracoes[indice -1].cheio = false;
     }
