@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 import { Frase } from '../shared/frase.model';
 import { FRASES } from './frases-mock';
@@ -8,7 +8,7 @@ import { FRASES } from './frases-mock';
   templateUrl: './painel.component.html',
   styleUrls: ['./painel.component.css']
 })
-export class PainelComponent implements OnInit {
+export class PainelComponent implements OnInit, OnDestroy {
 
   public instrucao: string = 'Traduza a frase:'
   public frases: Frase[] = FRASES;
@@ -36,6 +36,14 @@ export class PainelComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  /** 
+   * Esse método será disparado quando o painel não for mais
+   * exibido pelo componente principal
+  */
+  ngOnDestroy() {
+    console.log('O componente foi destruído.');
   }
 
   public atuallizaResposta(resposta: Event): void {
