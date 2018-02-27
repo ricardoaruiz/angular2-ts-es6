@@ -18,6 +18,7 @@ export class PainelComponent implements OnInit {
   public rodadaFrase: Frase;
 
   public progresso: number = 0;
+  public tentativas: number = 3;
 
   constructor() { 
     this.proximaFrase();
@@ -34,7 +35,10 @@ export class PainelComponent implements OnInit {
     if (this.rodadaFrase.frasePtBr === this.resposta) {
       this.incrementaRodada();
     } else {
-      alert('Tradução errada.');
+      this.tentativas--;
+      if (this.tentativas === -1) {
+        alert('Fim de jogo');
+      }
     }
   }
   
