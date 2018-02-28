@@ -39,8 +39,18 @@ no arquivo .angular.cli.json da seguinte forma:
         "../node_modules/bootstrap/dist/js/bootstrap.min.js"
       ],`
 
+**App2 - Criando os componentes Topo, Home e Rodape**
 
+Foram criados os três componentes (Topo, Home e Rodape) utilizando o comando:
+    `ng g c topo`, `ng g c home` e `ng g c rodape` com isso os tres componentes foram criados.
 
+Em seguida ir no arquivo 'app.component.html' e instanciar os componentes criados da seguinte forma:
+    `<app-topo></app-topo>`
+    `<app-home></app-home>`
+    `<app-rodape></app-rodape>`
+
+Ir na pasta 'arquivos/app2' e descompactar o arquivo 'arquivos-necessarios.zip' e copiar todos os arquivos existentes para seus respectivos locais no projeto. Isso é feito para adiantar a parte
+do layout das páginas.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
