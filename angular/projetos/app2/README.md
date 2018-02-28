@@ -52,6 +52,17 @@ Em seguida ir no arquivo 'app.component.html' e instanciar os componentes criado
 Ir na pasta 'arquivos/app2' e descompactar o arquivo 'arquivos-necessarios.zip' e copiar todos os arquivos existentes para seus respectivos locais no projeto. Isso é feito para adiantar a parte
 do layout das páginas.
 
+**App2 - Criando e alterando o favicon**
+
+Ir até a url: https://www.favicon-generator.org/ e carregar o arquivo icone.png da pasta
+arquivos/app2 e gerar todos os icones.
+
+Fazer o download dos arquivo gerados e colocar em uma pasta 'ico' dentro de assets
+Copiar o código gerado no site de geração do ícone e colocar na index.html mudando
+o src para pegar de '/assets/icon/...'
+
+
+===============================================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
 ## Development server
