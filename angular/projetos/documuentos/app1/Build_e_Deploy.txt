@@ -1,0 +1,33 @@
+----------------------------------------------------------
+-----------------------  Build ---------------------------
+----------------------------------------------------------
+
+--Para realizar o build em DEV:
+    - ng build
+    - ng build --dev
+
+--Para realizar o build em PROD:
+    - ng build --prod
+
+Após rodas qualquer um dos comandos acima, uma nova pasta
+"dist" será criada na estrutura do projeto com a aplicação
+pronta para ser distribuída.
+
+----------------------------------------------------------
+-------------------- Deploy Local-------------------------
+----------------------------------------------------------
+
+Instalar o Http Server para fazer testes de deploy local
+
+Instalação:
+    - npm install http-server -g
+
+Subir o servidor:
+    - Dentro do diretório de distribuição (dist) da aplicação, 
+      digitar o comando 'http-server'
+
+----------------------------------------------------------
+--------------------Deploy Heroku-------------------------
+---------------------------------------------------------- 
+
+https://www.youtube.com/watch?v=0bOJjAUXjhI
