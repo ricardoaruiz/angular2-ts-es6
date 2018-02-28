@@ -10,11 +10,11 @@
 <!-- Mensagem de jogo finalizado por ter perdido -->
 <ng-template #fimDeJogoDerrota>
     <div *ngIf="tipoEncerramento === 'derrota' else fimDeJogoVitoria" 
-        class="container" style="margin-top: 50px;">
+        class="container" class="box-mensagem">
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center">
-                    <h3 style="color: red">
+                    <h3 class="mensagem-derrota">
                         Fim de jogo, infelizmente você perdeu.
                     </h3>
                 </div>
@@ -26,11 +26,11 @@
 <!-- Esse template será renderizado caso o ngIf acima não seja true -->
 <!-- Mensagem de jogo finalizado por ter vencido -->
 <ng-template #fimDeJogoVitoria>
-    <div class="container" style="margin-top: 50px;">
+    <div class="container" class="box-mensagem">
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center">
-                    <h3 style="color: green">
+                    <h3 class="mensagem-vitoria">
                         Fim de jogo, você ganhou.
                     </h3>
                 </div>
@@ -38,3 +38,14 @@
         </div>
     </div>
 </ng-template>
+
+<!-- Botão de reinicio de jogo -->
+<div *ngIf="!jogoEmAndadamento">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary botao-reiniciar" (click)="reiniciarJogo()">Reiniciar jogo</button>
+            </div>
+        </div>
+    </div>
+</div>

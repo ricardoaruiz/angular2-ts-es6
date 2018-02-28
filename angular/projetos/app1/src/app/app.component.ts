@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   
   public tipoEncerramento: string;
-
   public jogoEmAndadamento: boolean = true;
 
   /**
@@ -20,5 +19,10 @@ export class AppComponent {
   public encerrarJogo(tipo: string): void {
     this.tipoEncerramento = tipo;
     this.jogoEmAndadamento = false;
+  }
+
+  public reiniciarJogo(): void {
+    this.jogoEmAndadamento = true;
+    this.tipoEncerramento = undefined;
   }
 }

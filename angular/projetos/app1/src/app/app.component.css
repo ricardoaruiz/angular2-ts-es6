@@ -1,0 +1,12 @@
+.box-mensagem {
+    margin-top: 50px;
+}
+.mensagem-derrota {
+    color: red;
+}
+.mensagem-vitoria {
+    color: green;
+}
+.botao-reiniciar {
+    margin-top: 25px;
+}
