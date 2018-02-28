@@ -1,15 +1,46 @@
 # App2
 
+**App2 - Iniciando o projeto e entendendo a flag --prefix**
+
 O projeto App2 (Pássaro Urbano) foi criando utilizando o seguinte comando:
     `ng new -p xyz` - esse comando além de criar o projeto faz a definição
     do prefixo das tags dos componentes que serão criados nesse projeto.
 
-    No arquivo '.angular.cli.json' a propriedade prefix foi definida como 'xyz'
+   - No arquivo '.angular.cli.json' a propriedade prefix foi definida como 'xyz'
     e o arquivo 'app.component.ts' teve o seu selector definido baseado nesse 
     prefixo: selector: 'app-root',
 
-    Isso foi feito para mostrar que é possível mudar essa informação na criação
+   - Isso foi feito para mostrar que é possível mudar essa informação na criação
     do projeto, porém, voltamos tudo para a configuração padrão com o prefixo 'app'
+
+**App2 - Instalando o Bootstrap, JQuery e Tether**
+
+Vamos instalar o Bootstrap na versão 4 com o seguinte comando:    
+    `npm install --save bootstrap@4.0.0-alpha.6`
+
+Vamos instalar o JQuery na última versão com o seguinte comando:
+    `npm install --save jquery`
+
+Vamos instalar o Tether na última versão com o seguinte comando:
+    `npm install --save tether`
+
+   O Tether é um framework para fazer tutoriais de apresentação da app
+
+Após fazer a instalação das bibliotecas será necessário fazer suas importações
+no arquivo .angular.cli.json da seguinte forma:
+
+    `"styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/tether/dist/js/tether.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+      ],`
+
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
