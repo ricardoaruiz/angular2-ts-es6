@@ -2,19 +2,36 @@
 <app-topo></app-topo>
 
 <!-- Painel -->
-<div *ngIf="jogoEmAndadamento; else fimDeJogo">
+<div *ngIf="jogoEmAndadamento; else fimDeJogoDerrota">
     <app-painel (encerrarJogo)="encerrarJogo($event)"></app-painel>
 </div>
 
 <!-- Esse template será renderizado caso o ngIf acima não seja true -->
 <!-- Mensagem de jogo finalizado por ter perdido -->
-<ng-template #fimDeJogo>
-    <div class="container" style="margin-top: 50px;">
+<ng-template #fimDeJogoDerrota>
+    <div *ngIf="tipoEncerramento === 'derrota' else fimDeJogoVitoria" 
+        class="container" style="margin-top: 50px;">
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center">
                     <h3 style="color: red">
                         Fim de jogo, infelizmente você perdeu.
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Esse template será renderizado caso o ngIf acima não seja true -->
+<!-- Mensagem de jogo finalizado por ter vencido -->
+<ng-template #fimDeJogoVitoria>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <h3 style="color: green">
+                        Fim de jogo, você ganhou.
                     </h3>
                 </div>
             </div>

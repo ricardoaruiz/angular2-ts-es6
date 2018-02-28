@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
+  public tipoEncerramento: string;
+
   public jogoEmAndadamento: boolean = true;
 
   /**
@@ -16,7 +18,7 @@ export class AppComponent {
    * @param tipo parametro passado pelo filho ao emitir o evento
    */
   public encerrarJogo(tipo: string): void {
-    console.log(tipo);
+    this.tipoEncerramento = tipo;
     this.jogoEmAndadamento = false;
   }
 }
