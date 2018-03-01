@@ -1,5 +1,7 @@
 # App2
 
+- Link da app no AWS: http://ralmendror-passaro-urbano.s3-website-sa-east-1.amazonaws.com/
+
 **App2 - Iniciando o projeto e entendendo a flag --prefix**
 
 O projeto App2 (Pássaro Urbano) foi criando utilizando o seguinte comando:
@@ -62,7 +64,7 @@ Copiar o código gerado no site de geração do ícone e colocar na index.html m
 o src para pegar de '/assets/icon/...'
 
 
-===============================================================================================
+=========================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
 ## Development server
