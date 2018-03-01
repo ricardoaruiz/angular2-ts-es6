@@ -103,7 +103,16 @@ para o sistema de rotas onde os componentes devem ser renderizados.
 Para estabelecer a navegação a partir de um link utilizamos a propriedade "routerLink" conforme exemplos abaixo:
 
 `<a class="nav-link active" [routerLink]="['/restaurantes']">Restaurantes</a>`
+
 `<a class="nav-link" routerLink="/diversao">Diversão</a>`
+
+**App2 - Alterando a classe do elemento associado a rota ativa**
+
+Para fazer o destaque do elemento que está associado a rota ativa é só utilizar a propriedade
+routerLinkActive conforme exemplos abaixo:
+`<a class="nav-link" routerLinkActive="active" [routerLink]="['/restaurantes']">Restaurantes</a>`
+
+`<a class="nav-link" routerLinkActive="active" routerLink="/diversao">Diversão</a>`
 
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
