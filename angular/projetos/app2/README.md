@@ -98,6 +98,12 @@ e em seguida dissemos para o RouterModule carregar as rotas com "forRoot" (rotas
 No arquivo 'app.component.html', inserimos a tag `<router-outlet></router-outlet>` para mostrar
 para o sistema de rotas onde os componentes devem ser renderizados.
 
+**App2 - Estabelecendo a navegação entre rotas**
+
+Para estabelecer a navegação a partir de um link utilizamos a propriedade "routerLink" conforme exemplos abaixo:
+
+`<a class="nav-link active" [routerLink]="['/restaurantes']">Restaurantes</a>`
+`<a class="nav-link" routerLink="/diversao">Diversão</a>`
 
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
