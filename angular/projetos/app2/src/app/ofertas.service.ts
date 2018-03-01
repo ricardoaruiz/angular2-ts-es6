@@ -61,11 +61,19 @@ export class OfertasService {
         return new Promise( (resolve, reject) => {
             let deuCerto = true;
             if(deuCerto) {
-                resolve(this.ofertas);
+                setTimeout(() => resolve(this.ofertas), 3000);
             } else {
                 reject({codigo_erro: 404, mensagem_erro: 'Servidor não encontrado'});
             }
-        });
+        })
+        .then( (ofertas: Oferta[]) => {
+            console.log('primeiro then')
+            return ofertas;
+        })
+        .then( (ofertas: Oferta[]) => {
+            console.log('segundo then')
+            return ofertas;
+        })
     }
 
 }
