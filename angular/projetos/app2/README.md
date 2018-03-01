@@ -63,6 +63,11 @@ Fazer o download dos arquivo gerados e colocar em uma pasta 'ico' dentro de asse
 Copiar o código gerado no site de geração do ícone e colocar na index.html mudando
 o src para pegar de '/assets/icon/...'
 
+**App2 - Exibindo ofertas com base no serviço OfertasService parte 1**
+
+Utilizar o arquivo 'dados-de-suporte-para-ofertas.txt' existente em 'arquivos/app2' para ver
+a estrutura de uma oferta bem como já usar para os dados mockados.
+
 
 =========================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
