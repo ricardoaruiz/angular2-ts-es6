@@ -53,11 +53,7 @@ export class OfertasService {
         }
     ];
 
-    public getOfertas(): Oferta[] {
-        return this.ofertas;
-    }
-
-    public getOfertas2(): Promise<Oferta[]> {
+    public getOfertas(): Promise<Oferta[]> {
         return new Promise( (resolve, reject) => {
             let deuCerto = true;
             if(deuCerto) {
@@ -67,11 +63,15 @@ export class OfertasService {
             }
         })
         .then( (ofertas: Oferta[]) => {
-            console.log('primeiro then')
-            return ofertas;
+            console.log('segundo then')
+            return new Promise( (resolve2, reject2) => {
+                setTimeout(() => {
+                    resolve2(ofertas)
+                }, 3000);
+            })
         })
         .then( (ofertas: Oferta[]) => {
-            console.log('segundo then')
+            console.log('terceiro then')
             return ofertas;
         })
     }
