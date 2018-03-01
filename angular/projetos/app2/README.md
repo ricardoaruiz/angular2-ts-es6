@@ -114,6 +114,10 @@ routerLinkActive conforme exemplos abaixo:
 
 `<a class="nav-link" routerLinkActive="active" routerLink="/diversao">Diversão</a>`
 
+**App2 - Criando e navegando para a página Oferta**
+
+O arquivo 'arquivos\app2\oferta.zip' possui o html e o css do componente de Oferta.
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
