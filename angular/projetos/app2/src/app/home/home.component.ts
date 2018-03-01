@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.ofertasServices.getOfertas()
       .then( (ofertas: Oferta[]) => {
-          console.log('Ofertas chegaram depois de resolvida a promise');
           this.ofertas = ofertas;
         })
         .catch( (erro) => {
