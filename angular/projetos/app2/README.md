@@ -83,7 +83,12 @@ a estrutura de uma oferta bem como já usar para os dados mockados.
 Para a fonte de dados das ofertas, utilizar o arquivo 'banco-de-dados.json' que está na pasta
 'arquivos/app2'
 
-=========================================================================
+**App2 Criando as páginas Restaurantes e Diversão**
+
+O arquivo componentes.zip tem o html e o css para as páginas de Restaurantes e de Diversão.
+Após criar os componentes, substituir os arquivos html e css pelos existentes no componentes.zip
+
+=====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
 ## Development server
