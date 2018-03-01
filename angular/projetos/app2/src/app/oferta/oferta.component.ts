@@ -12,6 +12,11 @@ export class OfertaComponent implements OnInit {
 
   ngOnInit() {
     console.log('Parametro recebido ' + this.route.snapshot.params['id']);
+
+    // Mostrando como usar o subscribe para obter parâmetros de rota
+    // this.route.params.subscribe((parametro: any) => {
+    //   console.log(parametro);
+    // });
   }
 
 }
