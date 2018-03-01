@@ -68,6 +68,20 @@ o src para pegar de '/assets/icon/...'
 Utilizar o arquivo 'dados-de-suporte-para-ofertas.txt' existente em 'arquivos/app2' para ver
 a estrutura de uma oferta bem como já usar para os dados mockados.
 
+**Introdução, instalação e testes do pacote json-server**
+
+- Documentação
+    https://github.com/typicode/json-server
+
+- Instalação
+    `npm install -g json-server`
+
+- Execução
+    `json-server --watch banco-de-dados.json`
+
+- Fonte de dados a ser utilizado com o json-server
+Para a fonte de dados das ofertas, utilizar o arquivo 'banco-de-dados.json' que está na pasta
+'arquivos/app2'
 
 =========================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
