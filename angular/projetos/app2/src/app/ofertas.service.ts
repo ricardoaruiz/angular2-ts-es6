@@ -59,7 +59,7 @@ export class OfertasService {
 
     public getOfertas2(): Promise<Oferta[]> {
         return new Promise( (resolve, reject) => {
-            let deuCerto = false;
+            let deuCerto = true;
             if(deuCerto) {
                 resolve(this.ofertas);
             } else {
