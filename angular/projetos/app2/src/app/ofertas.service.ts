@@ -65,6 +65,7 @@ export class OfertasService {
      * Busca os dados de como usar de uma oferta através de seu id
      * 
      * @param id 
+     * @returns Promisse com os dados da descrição de como usar
      */
     public getComoUsarOfertaPorId(id: number): Promise<string> {
         return this.http.get(`${URL_API}/como-usar?id=${id}`)
@@ -72,6 +73,20 @@ export class OfertasService {
                 .then( (resposta: any) => {
                     return resposta.json()[0].descricao;
                 })
+    }
+
+    /**
+     * Busca os dados de onde fica de uma oferta através de seu id.
+     * 
+     * @param id 
+     * @returns Promisse com os dados da descrição de onde fica
+     */
+    public getOndeFicaOfertaPorId(id: number): Promise<string> {
+        return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+            .toPromise()
+                .then( (resposta: any) => {
+                    return resposta.json()[0].descricao;
+                } )
     }
 
 }
