@@ -34,6 +34,7 @@ export class OfertaComponent implements OnInit {
     this.ofertaService.getOfertaPorId(id)
       .then( (oferta: Oferta) => {
         this.oferta = oferta;
+        console.log(this.oferta);
       })
   }
 
