@@ -44,4 +44,23 @@ export class OfertasService {
 
     }
 
+    /**
+     * Obtem uma oferta pelo id.
+     * 
+     * @param id 
+     */
+    public getOfertaPorId(id: number): Promise<Oferta> {
+        return this.http.get(this.baseURL + `/ofertas?id=${id}`)
+            .toPromise()
+            .then( (resposta: any) => {
+                /*
+                    O método shift  extrai o primeiro objeto do array, deslocando
+                    todos os outros objetos um indice acima.
+                */
+                //return resposta.json().shift();
+                return resposta.json()[0];
+            })
+            
+    }
+
 }
