@@ -58,8 +58,20 @@ export class OfertasService {
                 */
                 //return resposta.json().shift();
                 return resposta.json()[0];
-            })
-            
+            })       
+    }
+
+    /**
+     * Busca os dados de como usar de uma oferta através de seu id
+     * 
+     * @param id 
+     */
+    public getComoUsarOfertaPorId(id: number): Promise<string> {
+        return this.http.get(`${URL_API}/como-usar?id=${id}`)
+            .toPromise()
+                .then( (resposta: any) => {
+                    return resposta.json()[0].descricao;
+                })
     }
 
 }
