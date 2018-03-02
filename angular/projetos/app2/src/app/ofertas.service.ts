@@ -9,11 +9,10 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Oferta } from './shared/oferta.model';
+import { URL_API } from './app.api';
 
 @Injectable()
 export class OfertasService {
-
-    private baseURL: string = 'http://localhost:3000';
 
     constructor(private http: Http) {}
 
@@ -22,7 +21,7 @@ export class OfertasService {
     */
     public getOfertas(): Promise<Oferta[]> {
 
-        return this.http.get(this.baseURL + '/ofertas?destaque=true')
+        return this.http.get(`${URL_API}/ofertas?destaque=true`)
             .toPromise()
                 .then( (resposta: any) => {                    
                     return resposta.json();
@@ -36,7 +35,7 @@ export class OfertasService {
      */
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
 
-        return this.http.get(this.baseURL + `/ofertas?categoria=${categoria}`)
+        return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
             .toPromise()
                 .then( (resposta: any) => {
                     return resposta.json();
@@ -50,7 +49,7 @@ export class OfertasService {
      * @param id 
      */
     public getOfertaPorId(id: number): Promise<Oferta> {
-        return this.http.get(this.baseURL + `/ofertas?id=${id}`)
+        return this.http.get(`${URL_API}/ofertas?id=${id}`)
             .toPromise()
             .then( (resposta: any) => {
                 /*
