@@ -19,22 +19,27 @@ export class OfertaComponent implements OnInit {
       private ofertaService: OfertasService) { }
 
   ngOnInit() {
-    console.log('Parametro recebido ' + this.route.snapshot.params['id']);
-
     // Mostrando como usar o subscribe para obter parâmetros de rota
     // this.route.params.subscribe((parametro: any) => {
     //   console.log(parametro);
     // });
-
     let id = this.route.snapshot.params['id'];
     this.carregarOferta(id);
+
+/*  
+    // Observable para pegar parametros da rota
+    this.route.params.subscribe(
+      (parametro: any) => { console.log(parametro) },
+      (erro: any) => { console.log(erro) },
+      (() => { console.log('processamento concluído') } )
+    ) */
+
   }
 
   private carregarOferta(id: number): void {
     this.ofertaService.getOfertaPorId(id)
       .then( (oferta: Oferta) => {
         this.oferta = oferta;
-        console.log(this.oferta);
       })
   }
 
