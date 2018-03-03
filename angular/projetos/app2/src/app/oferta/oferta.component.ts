@@ -65,15 +65,31 @@ export class OfertaComponent implements OnInit {
 /* 
     Aqui foi criado um observável que emite uma string e em seguida foi
     feito um subscribe nele para pegar a string e mostrar no console.
+
+    O observavel pode ter uma série de eventos (next) sendo realizada,
+    um erro caso ocorra um erro e um complete para encerrar a stream
+    de eventos.
+
+    Já o observador (subscribe) recebe
+    Primeiro parâmetro é uma função para tratar os eventos (next)
+    Segundo parâmetro é uma função para tratar o erro (error)
+    Terceiro parâmetro é uma função para tratar quando o stream é encerrado. (complete)
+    
 */
     //observable (observável)
     let meuObservavel = Observable.create( (observer: Observer<string>) => {
       observer.next('Primeiro evento da stream')
+      observer.next('Segundo evento da stream')
+      observer.complete()
+      observer.error('Algum erro ocorreu')
+      observer.next('Terceiro evento da stream')
     })
 
     //observable (observador)
     meuObservavel.subscribe(
-      (resultado: any) => console.log(resultado)
+      (resultado: string) => console.log(resultado),
+      (erro: string) => console.log(erro),
+      () => console.log('Finalizado')
     )
 
 
