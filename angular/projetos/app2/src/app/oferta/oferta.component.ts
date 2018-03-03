@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 
 /* 
 Import necessário para utilizar os operadores do Observable 
@@ -53,11 +54,28 @@ export class OfertaComponent implements OnInit {
      * operadores. Existem mais operadores que podem ser vistos na documentação
      * em: http://reactivex.io/documentation/operators.html
      */
+/*     
     let tempo = Observable.interval(2000)
 
     tempo.subscribe( (intervalo: number) => { 
       console.log(intervalo) 
     } )
+ */
+
+/* 
+    Aqui foi criado um observável que emite uma string e em seguida foi
+    feito um subscribe nele para pegar a string e mostrar no console.
+*/
+    //observable (observável)
+    let meuObservavel = Observable.create( (observer: Observer<string>) => {
+      observer.next('Primeiro evento da stream')
+    })
+
+    //observable (observador)
+    meuObservavel.subscribe(
+      (resultado: any) => console.log(resultado)
+    )
+
 
   }
 
