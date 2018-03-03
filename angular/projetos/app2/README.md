@@ -118,6 +118,12 @@ routerLinkActive conforme exemplos abaixo:
 
 O arquivo 'arquivos\app2\oferta.zip' possui o html e o css do componente de Oferta.
 
+**App2 - Introdução a Reactive Programming**
+
+Dar uma olhada no manifesto de programação reativa em:
+
+    https://www.reactivemanifesto.org/pt-BR
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
