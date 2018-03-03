@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { Subscription } from 'rxjs/Subscription';
 
 /* 
 Import necessário para utilizar os operadores do Observable 
@@ -18,7 +19,10 @@ import 'rxjs/Rx';
   styleUrls: ['./oferta.component.css'],
   providers: [ OfertasService ]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
+
+  private tempoObservableSubscription: Subscription
+  private meuObservableTesteSubscription: Subscription
 
   public oferta: Oferta;
 
@@ -54,13 +58,13 @@ export class OfertaComponent implements OnInit {
      * operadores. Existem mais operadores que podem ser vistos na documentação
      * em: http://reactivex.io/documentation/operators.html
      */
-/*     
+    
     let tempo = Observable.interval(2000)
 
-    tempo.subscribe( (intervalo: number) => { 
+    this.tempoObservableSubscription = tempo.subscribe( (intervalo: number) => { 
       console.log(intervalo) 
     } )
- */
+
 
 /* 
     Aqui foi criado um observável que emite uma string e em seguida foi
@@ -86,13 +90,22 @@ export class OfertaComponent implements OnInit {
     })
 
     //observable (observador)
-    meuObservavel.subscribe(
+    this.meuObservableTesteSubscription = meuObservavel.subscribe(
       (resultado: string) => console.log(resultado),
       (erro: string) => console.log(erro),
       () => console.log('Finalizado')
     )
 
 
+  }
+
+  ngOnDestroy() {
+/* 
+    Faz o unsubscribe dos observables. Sempre é necessário fazer o unsubscribe
+    para evitar os memory leaks.
+ */
+    this.tempoObservableSubscription.unsubscribe();
+    this.meuObservableTesteSubscription.unsubscribe();
   }
 
   private carregarOferta(id: number): void {
