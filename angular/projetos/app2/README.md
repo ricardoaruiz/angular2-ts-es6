@@ -124,6 +124,10 @@ Dar uma olhada no manifesto de programação reativa em:
 
     https://www.reactivemanifesto.org/pt-BR
 
+**Observables na prática parte 2 - Interval operator**
+
+    Documentação do RXJS:  http://reactivex.io/
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
