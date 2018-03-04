@@ -12,8 +12,8 @@ export class TopoComponent implements OnInit {
   ngOnInit() {
   }
 
-  public capturarFiltro($event: Event) {
-     let filtroInformado = (<HTMLInputElement>$event.target).value
+  public capturarFiltro(termoDaBusca: string) {
+     console.log(termoDaBusca);
   }
 
 }
