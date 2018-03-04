@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
 
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
@@ -22,6 +23,7 @@ export class TopoComponent implements OnInit {
 
   ngOnInit() {
     this.ofertas = this.subjectPesquisa
+      .debounceTime(1000) // executa a ação do switchmap após um segundo
       .switchMap( (termo: string) => {
         console.log('requisição http para a api');        
         return this.ofertaService.pesquisaOfertas(termo)
