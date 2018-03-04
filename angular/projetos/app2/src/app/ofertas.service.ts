@@ -106,7 +106,10 @@ export class OfertasService {
      * @returns observable
      */
     public pesquisaOfertas(termo: string): Observable<Oferta[]> {
-        return this.http.get(`${URL_API}/ofertas?descricao_oferta=${termo}`)
+        /* foi usado o campo descricao_oferta_like que não existe no retorno
+            pois o json server implementa buscas com like dessa forma
+        */
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
             .map( (resposta: any) => resposta.json());
     }
 
