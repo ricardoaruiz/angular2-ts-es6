@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
+
+import { Observable } from 'rxjs/Observable';
+/* 
+O map foi importado para poder utilizar
+o método map do Observable que foi importado
+acima
+ */
+import 'rxjs/add/operator/map';
+
 /* 
     O toPromisse foi importado para poder utilizar
     o método no retorno do http e transformar um 
@@ -87,6 +96,18 @@ export class OfertasService {
                 .then( (resposta: any) => {
                     return resposta.json()[0].descricao;
                 } )
+    }
+
+    /**
+     * Faz a busca das ofertar em função do que o usuário informa no 
+     * campo de busca no componente topo.
+     * 
+     * @param termo 
+     * @returns observable
+     */
+    public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta=${termo}`)
+            .map( (resposta: any) => resposta.json());
     }
 
 }
