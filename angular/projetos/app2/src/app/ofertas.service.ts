@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 
 import { Observable } from 'rxjs/Observable';
@@ -39,7 +39,7 @@ export class OfertasService {
 
         return this.http.get(`${URL_API}/ofertas?destaque=true`)
             .toPromise()
-                .then( (resposta: any) => {                    
+                .then( (resposta: Response) => {                    
                     return resposta.json();
                 })
     }
@@ -53,7 +53,7 @@ export class OfertasService {
 
         return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
             .toPromise()
-                .then( (resposta: any) => {
+                .then( (resposta: Response) => {
                     return resposta.json();
                 })
 
@@ -67,7 +67,7 @@ export class OfertasService {
     public getOfertaPorId(id: number): Promise<Oferta> {
         return this.http.get(`${URL_API}/ofertas?id=${id}`)
             .toPromise()
-            .then( (resposta: any) => {
+            .then( (resposta: Response) => {
                 /*
                     O método shift  extrai o primeiro objeto do array, deslocando
                     todos os outros objetos um indice acima.
@@ -86,7 +86,7 @@ export class OfertasService {
     public getComoUsarOfertaPorId(id: number): Promise<string> {
         return this.http.get(`${URL_API}/como-usar?id=${id}`)
             .toPromise()
-                .then( (resposta: any) => {
+                .then( (resposta: Response) => {
                     return resposta.json()[0].descricao;
                 })
     }
@@ -100,7 +100,7 @@ export class OfertasService {
     public getOndeFicaOfertaPorId(id: number): Promise<string> {
         return this.http.get(`${URL_API}/onde-fica?id=${id}`)
             .toPromise()
-                .then( (resposta: any) => {
+                .then( (resposta: Response) => {
                     return resposta.json()[0].descricao;
                 } )
     }
@@ -118,7 +118,7 @@ export class OfertasService {
         */
         return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
             .retry(10)
-            .map( (resposta: any) => resposta.json());
+            .map( (resposta: Response) => resposta.json());
     }
 
 }
