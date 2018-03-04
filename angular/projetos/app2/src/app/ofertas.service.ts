@@ -10,6 +10,13 @@ acima
  */
 import 'rxjs/add/operator/map';
 
+/**
+ * O retry foi importado para poder utilizar
+ * o método rety do Observable e fazer retentativas
+ * caso ocorra erro na requisição
+ */
+import 'rxjs/add/operator/retry';
+
 /* 
     O toPromisse foi importado para poder utilizar
     o método no retorno do http e transformar um 
@@ -110,6 +117,7 @@ export class OfertasService {
             pois o json server implementa buscas com like dessa forma
         */
         return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+            .retry(10)
             .map( (resposta: any) => resposta.json());
     }
 

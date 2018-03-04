@@ -22,7 +22,10 @@ export class TopoComponent implements OnInit {
 
   public capturarFiltro(termoDaBusca: string) {
      this.ofertas = this.ofertaService.pesquisaOfertas(termoDaBusca)
-     this.ofertas.subscribe( (ofertas: Oferta[]) => console.log(ofertas) )
+     this.ofertas.subscribe( 
+        ( ofertas: Oferta[] ) => console.log(ofertas),
+        ( erro: any ) => console.log(erro.status)
+      )
   }
 
 }
