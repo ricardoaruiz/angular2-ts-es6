@@ -18,6 +18,8 @@ import { Oferta } from '../shared/oferta.model'
 })
 export class TopoComponent implements OnInit {
 
+  public resultadoOfertas: Oferta[];
+
   private ofertas: Observable<Oferta[]>
   private subjectPesquisa: Subject<string> = new Subject<string>();
 
@@ -36,7 +38,6 @@ export class TopoComponent implements OnInit {
           return Observable.of<Oferta[]>([])
         }
 
-        console.log('requisição http para a api')
         return this.ofertaService.pesquisaOfertas(termo)
         
       })
@@ -47,7 +48,15 @@ export class TopoComponent implements OnInit {
         return Observable.of<Oferta[]>([]);
       })
 
-    this.ofertas.subscribe( (ofertas: Oferta[]) => { console.log(ofertas); })
+    /**
+     * Aqui sempre que houver dados na stream do observable será
+     * atualizado o atributo resultadoOfertas que por sua vez
+     * atualizará o template do componente mostrando o resultado
+     * da pesquisa realizada.
+     */
+    this.ofertas.subscribe( (ofertas: Oferta[]) => { 
+      this.resultadoOfertas = ofertas;
+    })
   }
 
   public pesquisa(termoDaBusca: string) {
