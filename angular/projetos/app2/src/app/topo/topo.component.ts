@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/of';
 
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
@@ -25,8 +26,15 @@ export class TopoComponent implements OnInit {
     this.ofertas = this.subjectPesquisa
       .debounceTime(1000) // executa a ação do switchmap após um segundo
       .switchMap( (termo: string) => {
-        console.log('requisição http para a api');        
+
+        if (termo.trim() === '') {
+          // retorna um observable de array de ofertas vazio
+          return Observable.of<Oferta[]>([])
+        }
+        
+        console.log('requisição http para a api')
         return this.ofertaService.pesquisaOfertas(termo)
+        
       })
 
     this.ofertas.subscribe( (ofertas: Oferta[]) => { console.log(ofertas); })
