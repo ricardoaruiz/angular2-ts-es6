@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
-import 'rxjs/add/operator/switchMap'
-import 'rxjs/add/operator/debounceTime'
-import 'rxjs/add/operator/distinctUntilChanged'
-import 'rxjs/add/operator/catch'
-import 'rxjs/add/observable/of'
+
+/* foi criado o arquivo rxjs-extendsions no diretório util que tb foi
+ criado, somente para centralizar os imports dos operadores dos observables
+ e em qualquer lugar que precisar será somente importar esse novo arquivo.*/
+import '../util/rxjs-extensions'
 
 import { OfertasService } from '../ofertas.service'
 import { Oferta } from '../shared/oferta.model'
