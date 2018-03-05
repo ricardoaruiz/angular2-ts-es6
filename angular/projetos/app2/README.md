@@ -143,6 +143,12 @@ Dar uma olhada no manifesto de programação reativa em:
         import localePt from '@angular/common/locales/pt';
         registerLocaleData(localePt);
 
+    Nos metadados do app.module.ts, adicionar como provider o objeto literal abaixo:
+        `{ 
+            provide: LOCALE_ID, 
+            useValue: 'pt-BR'
+        }`
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 

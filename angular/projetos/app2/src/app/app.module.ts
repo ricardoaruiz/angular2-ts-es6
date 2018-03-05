@@ -15,6 +15,7 @@ import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 
+//Utilizado para a Internacionalização
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
@@ -37,7 +38,7 @@ registerLocaleData(localePt);
     RouterModule.forRoot(ROUTES)
   ],
   providers: [ 
-    { 
+    { //Utilizado para a Internacionalização
       provide: LOCALE_ID, 
       useValue: 'pt-BR'
     }
