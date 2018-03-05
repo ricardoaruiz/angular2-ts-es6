@@ -128,6 +128,21 @@ Dar uma olhada no manifesto de programação reativa em:
 
     Documentação do RXJS:  http://reactivex.io/
 
+**Ajustando a formatação de moedas para o padrão Brasileiro (internacionalização)**
+
+    Instalar o pacote Intl para poder realizar a internacionalização dos dados a partir do seguinte comando: 
+        `npm install --save intl`
+
+    Adicionar as entradas abaixo no plyfills.ts:
+        `import 'intl'`
+        `import 'intl/locale-data/jsonp/pt-BR';`
+
+    Adicionar as entradas abaixo no app.module.ts (modulo a usar a internacionalização):
+        import { NgModule, LOCALE_ID } from '@angular/core';
+        import { registerLocaleData } from '@angular/common';
+        import localePt from '@angular/common/locales/pt';
+        registerLocaleData(localePt);
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
