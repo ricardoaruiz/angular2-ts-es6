@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/of';
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
+import { Subject } from 'rxjs/Subject'
+import 'rxjs/add/operator/switchMap'
+import 'rxjs/add/operator/debounceTime'
+import 'rxjs/add/operator/distinctUntilChanged'
+import 'rxjs/add/operator/catch'
+import 'rxjs/add/observable/of'
 
-import { OfertasService } from '../ofertas.service';
-import { Oferta } from '../shared/oferta.model';
-
+import { OfertasService } from '../ofertas.service'
+import { Oferta } from '../shared/oferta.model'
 
 @Component({
   selector: 'app-topo',
@@ -39,6 +39,12 @@ export class TopoComponent implements OnInit {
         console.log('requisição http para a api')
         return this.ofertaService.pesquisaOfertas(termo)
         
+      })
+      .catch( (erro: any) => { 
+        console.log(erro) 
+
+        //Caso ocorra algum erro, devolve um observable de array de ofertas vazio
+        return Observable.of<Oferta[]>([]);
       })
 
     this.ofertas.subscribe( (ofertas: Oferta[]) => { console.log(ofertas); })
