@@ -1,5 +1,5 @@
-<!-- <div class="fixed-top"> -->
-<div>
+<div class="fixed-top">
+
   <nav class="navbar navbar-light bg-faded">
     <div class="container">
       <div class="row">
@@ -18,7 +18,7 @@
             <ul class="list-group" style="position:absolute">
               <li class="list-group-item"
                 *ngFor="let oferta of resultadoOfertas">
-                  {{ oferta.titulo | uppercase }}
+                  {{ oferta.titulo | uppercase | descricaoReduzida }}
               </li>
             </ul>
 
