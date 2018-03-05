@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/of';
 
 import { OfertasService } from '../ofertas.service';
@@ -23,15 +24,18 @@ export class TopoComponent implements OnInit {
   constructor(private ofertaService: OfertasService) { }
 
   ngOnInit() {
+    /*Cria um observable com base em um subject e com isso é possível realizar
+    alguns controles na execução desse observable*/
     this.ofertas = this.subjectPesquisa
       .debounceTime(1000) // executa a ação do switchmap após um segundo
-      .switchMap( (termo: string) => {
+      .distinctUntilChanged() // faz com que uma pesquisa seja feita somente se for diferente da anterior
+      .switchMap( (termo: string) => { //faz com que o subscribe fique somente no último observable
 
         if (termo.trim() === '') {
           // retorna um observable de array de ofertas vazio
           return Observable.of<Oferta[]>([])
         }
-        
+
         console.log('requisição http para a api')
         return this.ofertaService.pesquisaOfertas(termo)
         
@@ -48,6 +52,8 @@ export class TopoComponent implements OnInit {
     //     () => console.log('Fluxo completo')
     //   )
 
+    /* A cada caracter digitado, faz um next para o subject que por sua
+    vez cria um observable */
     console.log('keyup caracter: ', termoDaBusca);
     this.subjectPesquisa.next(termoDaBusca)
   }
