@@ -5,10 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DescricaoReduzidaPipe implements PipeTransform {
 
-  transform(texto: string): string {
+  transform(texto: string, truncarEm: number): string {
 
-    if ( texto.length > 15 ) {
-      return texto.substr(0, 15) + '...';
+    if ( texto.length > truncarEm ) {
+      return texto.substr(0, truncarEm) + '...';
     }
 
     return texto;
