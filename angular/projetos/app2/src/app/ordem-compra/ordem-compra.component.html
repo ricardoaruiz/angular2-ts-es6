@@ -69,6 +69,8 @@
       <div class="form-row">
 
         <div class="form-group col-md-6">
+
+          <!-- campo endereco -->
           <input type="text" 
                  class="form-control {{enderecoEstadoPrimitivo ? '' : enderecoValido ? 'is-valid' : 'is-invalid'}}" 
                  placeholder="Endereço" autocomplete="off" 
@@ -90,6 +92,8 @@
         </div>
 
         <div class="form-group col-md-2">
+
+          <!-- campo numero -->
           <input type="text" class="form-control {{numeroEstadoPrimitivo ? '' : numeroValido ? 'is-valid' : 'is-invalid'}}" 
                  placeholder="Número" autocomplete="off" 
                  minlength="1" required
@@ -110,6 +114,8 @@
         </div>
 
         <div class="form-group col-md-4">
+
+          <!-- campo complemento -->
           <input type="text" class="form-control {{complementoEstadoPrimitivo ? '' : complementoValido ? 'is-valid' : ''}}" 
                  placeholder="Complemento" autocomplete="off"
                  #inputComplemento
@@ -134,6 +140,8 @@
       <div class="form-row">
           
         <div class="form-group col-md-3">
+
+          <!-- campo forma de pagamento -->
           <select class="form-control {{formaPagamentoEstadoPrimitivo ? '' : formaPagamentoValido ? 'is-valid' : 'is-invalid'}}" 
               #selectFormaPagamento 
               (change)="atualizaFormaPagamento(selectFormaPagamento.value)">
@@ -151,12 +159,12 @@
                 <small class="form-text text-danger">Selecione uma forma de pagamento</small>
             </ng-template>
           </div>
-          
+
         </div>
       </div>
 
       <hr />
-      <button type="submit" class="btn btn-primary btn-lg">Cofirmar compra</button>
+      <button type="submit" class="btn btn-primary btn-lg" [disabled]="formEstado">Cofirmar compra</button>
     </form>
   </div>
 </div>

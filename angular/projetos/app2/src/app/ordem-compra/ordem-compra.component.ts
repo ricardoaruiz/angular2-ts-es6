@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdemCompraComponent implements OnInit {
 
+  // valores relacionados a cada campo do formulário
   public endereco: string = ''
   public numero: string = ''
   public complemento: string = ''
@@ -24,6 +25,9 @@ export class OrdemCompraComponent implements OnInit {
   public complementoEstadoPrimitivo: boolean = true
   public formaPagamentoEstadoPrimitivo: boolean = true
 
+  //controlar botão confirmar compra
+  public formEstado: string = 'disabled'
+
   constructor() { }
 
   ngOnInit() {
@@ -33,24 +37,33 @@ export class OrdemCompraComponent implements OnInit {
     this.endereco = endereco    
     this.enderecoEstadoPrimitivo = false
     this.endereco.length > 3 ? this.enderecoValido = true : this.enderecoValido = false
+    this.habilitaForm()
   }
 
   public atualizaNumero(numero: string): void {
     this.numero = numero
     this.numeroEstadoPrimitivo = false
     this.numeroValido = this.numero.length > 0 ? true : false;
+    this.habilitaForm()
   }
 
   public atualizaComplemento(complemento: string): void {
     this.complemento = complemento 
     this.complementoEstadoPrimitivo = false
     this.complementoValido = this.complemento.length > 0 ? true : false
+    this.habilitaForm()
   }
 
   public atualizaFormaPagamento(formaPagamento: string): void {
     this.formaPagamento = formaPagamento
     this.formaPagamentoEstadoPrimitivo = false
     this.formaPagamentoValido = this.formaPagamento !== '' ? true : false
+    this.habilitaForm()
+  }
+
+  public habilitaForm(): void {
+    this.formEstado = this.enderecoValido && 
+      this.numeroValido && this.formaPagamentoValido ? '' : 'disabled'
   }
 
 }
