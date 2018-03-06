@@ -149,6 +149,20 @@ Dar uma olhada no manifesto de programação reativa em:
             useValue: 'pt-BR'
         }`
 
+**App2 - Atualizando a versão do Bootstrap de alpha para beta**
+
+    `npm unistall bootstrap` - para remover a biblioteca em uso no momento
+    `npm install --save bootstrap@4.0.0-beta`
+
+    `npm uninstall tether` - remover o tether, pois na versão beta não é mais utilizado
+    `npm install --save popper.js` - agora a versão beta passou a usar o popper
+
+    Remover a dependencia do tether no arquivo .angular.cli.json
+    Adicionar a dependencia do popper no arquivo .angular.cli.json conforme abaixo:
+    
+        `../node_modules/popper.js/dist/umd/popper.min.js`
+
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
