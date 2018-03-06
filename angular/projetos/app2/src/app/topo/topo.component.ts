@@ -18,7 +18,7 @@ import { Oferta } from '../shared/oferta.model'
 })
 export class TopoComponent implements OnInit {
 
-  public resultadoOfertas: Oferta[];
+  //public resultadoOfertas: Oferta[];
 
   private ofertas: Observable<Oferta[]>
   private subjectPesquisa: Subject<string> = new Subject<string>();
@@ -42,8 +42,6 @@ export class TopoComponent implements OnInit {
         
       })
       .catch( (erro: any) => { 
-        console.log(erro) 
-
         //Caso ocorra algum erro, devolve um observable de array de ofertas vazio
         return Observable.of<Oferta[]>([]);
       })
@@ -54,9 +52,9 @@ export class TopoComponent implements OnInit {
      * atualizará o template do componente mostrando o resultado
      * da pesquisa realizada.
      */
-    this.ofertas.subscribe( (ofertas: Oferta[]) => { 
-      this.resultadoOfertas = ofertas;
-    })
+    // this.ofertas.subscribe( (ofertas: Oferta[]) => { 
+    //   this.resultadoOfertas = ofertas;
+    // })
   }
 
   public pesquisa(termoDaBusca: string) {
@@ -69,7 +67,6 @@ export class TopoComponent implements OnInit {
 
     /* A cada caracter digitado, faz um next para o subject que por sua
     vez cria um observable */
-    console.log('keyup caracter: ', termoDaBusca);
     this.subjectPesquisa.next(termoDaBusca)
   }
 

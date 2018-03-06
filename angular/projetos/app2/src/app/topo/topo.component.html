@@ -16,9 +16,13 @@
             (keyup)="pesquisa(termoDaPesquisa.value)">
 
             <ul class="list-group" style="position:absolute">
+
+              <!-- Está usando o pipe async que faz o subcribe no observable 'ofertas'
+                  definido na classe do componente e pega no seu resultado o array de
+                  ofertas para fazer a iteração e compor a lista -->
               <li class="list-group-item"
-                *ngFor="let oferta of resultadoOfertas">
-                  {{ oferta.titulo | uppercase | descricaoReduzida:7 }}
+                *ngFor="let oferta of ofertas | async ">
+                  {{ oferta.titulo | descricaoReduzida:15 }}
               </li>
             </ul>
 
