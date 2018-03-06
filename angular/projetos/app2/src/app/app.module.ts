@@ -20,6 +20,7 @@ import { DescricaoReduzidaPipe } from './util/descricao-reduzida.pipe';
 //Utilizado para a Internacionalização
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -33,7 +34,8 @@ registerLocaleData(localePt);
     OfertaComponent,
     ComoUsarComponent,
     OndeFicaComponent,
-    DescricaoReduzidaPipe
+    DescricaoReduzidaPipe,
+    OrdemCompraComponent
   ],
   imports: [
     BrowserModule,

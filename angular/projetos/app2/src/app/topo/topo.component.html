@@ -14,6 +14,7 @@
             #termoDaPesquisa
             (keyup)="pesquisa(termoDaPesquisa.value)">
 
+            <!-- o position:absolute foi inserido para que a lista fique sempre por cima de tudo -->
             <ul class="list-group" style="position:absolute; z-index: 999">
 
               <!-- Está usando o pipe async que faz o subcribe no observable 'ofertas'

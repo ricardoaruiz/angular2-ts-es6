@@ -20,7 +20,7 @@ export class TopoComponent implements OnInit {
 
   //public resultadoOfertas: Oferta[];
 
-  private ofertas: Observable<Oferta[]>
+  public ofertas: Observable<Oferta[]>
   private subjectPesquisa: Subject<string> = new Subject<string>();
 
   constructor(private ofertaService: OfertasService) { }
