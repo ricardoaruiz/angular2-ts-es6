@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { OfertasService } from '../../ofertas.service';
 
 @Component({
@@ -19,8 +19,14 @@ export class ComoUsarComponent implements OnInit {
 
   ngOnInit() {
     //pegando o id da rota pai do componente oferta
-    let id = this.route.parent.snapshot.params['id']
-    this.obtemComoUsarDaOferta(id);
+    // let id = this.route.parent.snapshot.params['id']
+    // this.obtemComoUsarDaOferta(id);
+
+      /* A cada modificação de parametro na rota esse trecho é
+      executado*/
+    this.route.parent.params.subscribe( (parametros: Params) => {
+      this.obtemComoUsarDaOferta(parametros.id);
+    })
   }
 
   private obtemComoUsarDaOferta(id: number): void {

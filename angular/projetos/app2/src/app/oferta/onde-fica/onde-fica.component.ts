@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { OfertasService } from '../../ofertas.service';
 
 @Component({
@@ -18,8 +18,14 @@ export class OndeFicaComponent implements OnInit {
 
   ngOnInit() {
       //pegando o id da rota pai do componente oferta
-      let id = this.route.parent.snapshot.params['id']
-      this.obtemOndeFicaOferta(id);
+      // let id = this.route.parent.snapshot.params['id']
+      // this.obtemOndeFicaOferta(id);
+
+      /* A cada modificação de parametro na rota esse trecho é
+      executado*/
+      this.route.parent.params.subscribe( (parametros: Params) => {
+        this.obtemOndeFicaOferta(parametros.id);
+      } )
   }
 
   private obtemOndeFicaOferta(id: number): void {

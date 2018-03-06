@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
@@ -35,8 +35,12 @@ export class OfertaComponent implements OnInit, OnDestroy {
     // this.route.params.subscribe((parametro: any) => {
     //   console.log(parametro);
     // });
-    let id = this.route.snapshot.params['id'];
-    this.carregarOferta(id);
+    //let id = this.route.snapshot.params['id'];
+    //this.carregarOferta(id);
+
+    this.route.params.subscribe( (parametros: Params) => {
+      this.carregarOferta(parametros.id);
+    } )
 
   /*  
     // Observable para pegar parametros da rota
