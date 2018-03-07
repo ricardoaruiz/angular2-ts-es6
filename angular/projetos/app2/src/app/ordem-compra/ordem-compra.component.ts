@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import { OrdemCompraService } from '../ordem-compra.service'
 import { Pedido } from '../shared/pedido.model'
 
@@ -14,5 +16,9 @@ export class OrdemCompraComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  public confirmarCompra(formularioPedido: NgForm): void {
+    console.log(formularioPedido.value);    
   }
 }
