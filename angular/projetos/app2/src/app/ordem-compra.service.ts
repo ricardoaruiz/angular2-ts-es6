@@ -8,7 +8,7 @@ export class OrdemCompraService {
   constructor() { }
 
   public efetivarCompra(pedido: Pedido): void {
-    console.log('Chegamos até aqui');
+    console.log(pedido);
     
   }
 
