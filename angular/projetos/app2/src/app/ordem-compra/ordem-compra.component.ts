@@ -17,7 +17,7 @@ export class OrdemCompraComponent implements OnInit {
     'endereco' : new FormControl(null),
     'numero' : new FormControl(null),
     'complemento': new FormControl(null),
-    'formaPagamento' : new FormControl(null),
+    'formaPagamento' : new FormControl(null)
   });
 
   constructor(private ordemCompraService: OrdemCompraService) { }
@@ -27,5 +27,6 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(): void {
+    console.log(this.form);    
   }
 }
