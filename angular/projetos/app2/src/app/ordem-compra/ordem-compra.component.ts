@@ -12,6 +12,8 @@ import { Pedido } from '../shared/pedido.model'
 })
 export class OrdemCompraComponent implements OnInit {
 
+  public idDoPedido: number = undefined
+
   /*
     Referencia para o formulário do template
     Nessa referência precisamos definir os contoles do formulário, bem como
@@ -66,6 +68,18 @@ export class OrdemCompraComponent implements OnInit {
       return;
     }
     console.log('Vai submeter o http');
+
+    let pedido: Pedido = new Pedido(
+      this.form.get('endereco').value,
+      this.form.get('numero').value,
+      this.form.get('complemento').value,
+      this.form.get('formaPagamento').value
+    )
+
+    this.ordemCompraService.efetivarCompra(pedido)
+    .subscribe( (idDoPedido: number) => {
+      this.idDoPedido = idDoPedido;
+    } )
     
   }
 }

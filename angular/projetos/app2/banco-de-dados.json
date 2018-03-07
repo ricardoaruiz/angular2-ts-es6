@@ -213,6 +213,13 @@
       "complemento": "kjlkjlkj",
       "formaPagamento": "debito",
       "id": 4
+    },
+    {
+      "endereco": "Rua Abc123",
+      "numero": "456",
+      "complemento": "Comp",
+      "formaPagamento": "dinheiro",
+      "id": 5
     }
   ],
   "pessoa": [

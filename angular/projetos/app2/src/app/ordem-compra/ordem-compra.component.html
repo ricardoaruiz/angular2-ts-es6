@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="ordem-compra">
+  <div class="ordem-compra" *ngIf="idDoPedido === undefined else msgPedidoCriado">
     <form [formGroup]="form" (ngSubmit)="confirmarCompra()" novalidate>
     
       <h5>Sua Compra</h5>
@@ -141,4 +141,9 @@
       >Cofirmar compra</button>
     </form>
   </div>
+  
+  <ng-template #msgPedidoCriado class="ordem-compra">
+    <app-order-compra-sucesso [idPedidoCompra]=idDoPedido></app-order-compra-sucesso>
+  </ng-template>
+
 </div>
