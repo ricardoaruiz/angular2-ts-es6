@@ -11,7 +11,7 @@ export class OrdemCompraService {
 
   constructor(private http: Http) { }
 
-  public efetivarCompra(pedido: Pedido): Observable<Pedido> {
+  public efetivarCompra(pedido: Pedido): Observable<number> {
 
     //Configura o header da requisição para informar que será enviado um JSON
     let headers: Headers = new Headers();
@@ -19,7 +19,7 @@ export class OrdemCompraService {
 
     /* 
     Realiza a requisição POST passando a URL, o body e o header e transforma o
-    Observarble recebido em um Observable do tipo Pedido
+    Observarble recebido em um Observable do tipo number com o id do pedido
     */
     return this.http.post
     (
@@ -28,8 +28,7 @@ export class OrdemCompraService {
        new RequestOptions({ headers: headers })
     )
     .map( (resposta: Response) => {
-        pedido = resposta.json();
-        return pedido;
+        return resposta.json().id;
     })
     
   }

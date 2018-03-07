@@ -20,8 +20,8 @@ import { DescricaoReduzidaPipe } from './util/descricao-reduzida.pipe';
 //Utilizado para a Internacionalização
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { OrdemCompraComponent } from './ordem-compra/ordem-compra.componen;
-import { OrderCompraSucessoComponent } from './order-compra-sucesso/order-compra-sucesso.component't';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrderCompraSucessoComponent } from './order-compra-sucesso/order-compra-sucesso.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -36,8 +36,8 @@ registerLocaleData(localePt);
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzidaPipe,
-    OrdemCompraCompone,
-    OrderCompraSucessoComponentnt
+    OrdemCompraComponent,
+    OrderCompraSucessoComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import { Pedido } from '../shared/pedido.model';
 export class OrdemCompraComponent implements OnInit {
 
   public pedido: Pedido = new Pedido('','','','');
+  public idPedidoCompra: number = undefined;
 
   // valores relacionados a cada campo do formulário
   public endereco: string = ''
@@ -80,7 +81,9 @@ export class OrdemCompraComponent implements OnInit {
     this.pedido.formaPagamento = this.formaPagamento;
 
     this.ordemCompraservice.efetivarCompra(this.pedido)
-      .subscribe( (pedido: Pedido) => { console.log(pedido)} )
+      .subscribe( (idPedidoCompra: number) => { 
+        this.idPedidoCompra = idPedidoCompra;
+      })
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-order-compra-sucesso',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-compra-sucesso.component.css']
 })
 export class OrderCompraSucessoComponent implements OnInit {
+
+  @Input()
+  public idPedidoCompra: number;
 
   constructor() { }
 
