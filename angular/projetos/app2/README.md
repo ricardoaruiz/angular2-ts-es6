@@ -162,6 +162,10 @@ Dar uma olhada no manifesto de programação reativa em:
     
         `../node_modules/popper.js/dist/umd/popper.min.js`
 
+**App2 - Feedback parte1 - Criando componente OrdemCompraSucesso**
+
+    O arquivo '/aquivos/app2/ordem-compra-sucesso.componente.zip' contém o html do 
+    componente
 
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
