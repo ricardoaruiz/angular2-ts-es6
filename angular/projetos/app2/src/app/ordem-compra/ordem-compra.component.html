@@ -62,6 +62,7 @@
       </div>
       <br />
 
+      <pre>Formulario válido? = {{formularioPedido.valid ? 'sim' : 'não'}}</pre>
       <pre>{{formularioPedido.value | json}}</pre>
 
       <h5>Dados de entrega</h5>
@@ -75,7 +76,8 @@
           class="form-control is-invalid" 
           placeholder="Endereço" 
           autocomplete="off" 
-          minlength="5" 
+          minlength="3" 
+          maxlength="120"
           required
           name="endereco"
           ngModel
@@ -91,6 +93,8 @@
             autocomplete="off" 
             minlength="1"
             required
+            minlength="1" 
+            maxlength="20"
             name="numero"
             ngModel
           >
@@ -119,6 +123,7 @@
         <div class="form-group col-md-3">
           <select 
             class="form-control is-invalid"
+            required
             name="formaPagamento"
             ngModel
           >
