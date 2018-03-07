@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
 import { OrdemCompraService } from '../ordem-compra.service'
 import { Pedido } from '../shared/pedido.model'
 
@@ -9,6 +11,14 @@ import { Pedido } from '../shared/pedido.model'
   providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
+
+  //Referencia para o formulário do template
+  public form: FormGroup = new FormGroup({
+    'endereco' : new FormControl(null),
+    'numero' : new FormControl(null),
+    'complemento': new FormControl(null),
+    'formaPagamento' : new FormControl(null),
+  });
 
   constructor(private ordemCompraService: OrdemCompraService) { }
 
