@@ -192,6 +192,27 @@
       "complemento": "Portal dos Manacás",
       "formaPagamento": "dinheiro",
       "id": 1
+    },
+    {
+      "endereco": "Rua Lacônia",
+      "numero": "459",
+      "complemento": "",
+      "formaPagamento": "dinheiro",
+      "id": 2
+    },
+    {
+      "endereco": "ççlkçlk",
+      "numero": "97987",
+      "complemento": "khkjhkjh",
+      "formaPagamento": "debito",
+      "id": 3
+    },
+    {
+      "endereco": "kiiooiu",
+      "numero": "098098",
+      "complemento": "kjlkjlkj",
+      "formaPagamento": "debito",
+      "id": 4
     }
   ],
   "pessoa": [
