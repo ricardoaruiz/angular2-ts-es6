@@ -185,8 +185,14 @@
       "descricao": "Estrada Maria das Graças, 12, Salvador - BA "
     }
   ],
-  "pedido" : [
-
+  "pedidos": [
+    {
+      "endereco": "Alameda dos Resedas",
+      "numero": "154",
+      "complemento": "Portal dos Manacás",
+      "formaPagamento": "dinheiro",
+      "id": 1
+    }
   ],
   "pessoa": [
     {

@@ -78,8 +78,9 @@ export class OrdemCompraComponent implements OnInit {
     this.pedido.numero = this.numero;
     this.pedido.complemento = this.complemento;
     this.pedido.formaPagamento = this.formaPagamento;
-    
-    this.ordemCompraservice.efetivarCompra(this.pedido);
+
+    this.ordemCompraservice.efetivarCompra(this.pedido)
+      .subscribe( (pedido: Pedido) => { console.log(pedido)} )
   }
 
 }
