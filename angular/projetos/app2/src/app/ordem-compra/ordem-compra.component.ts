@@ -70,7 +70,7 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(): void {
-    this.ordemCompraservice.efetivarCompra();
+    //this.ordemCompraservice.efetivarCompra();
   }
 
 }
