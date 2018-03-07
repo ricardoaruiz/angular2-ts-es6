@@ -53,6 +53,19 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(): void {
-    console.log(this.form);    
+    console.log(this.form);
+    if (this.form.invalid) {
+      //Esse loop substitui as linhas abaixo
+      Object.keys(this.form.controls).forEach(key => {
+        this.form.get(key).markAsTouched();
+      });
+      // this.form.get('endereco').markAsTouched()
+      // this.form.get('numero').markAsTouched()
+      // this.form.get('complemento').markAsTouched()
+      // this.form.get('formaPagamento').markAsTouched()
+      return;
+    }
+    console.log('Vai submeter o http');
+    
   }
 }
