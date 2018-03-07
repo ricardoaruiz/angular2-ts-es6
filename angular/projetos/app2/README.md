@@ -167,6 +167,11 @@ Dar uma olhada no manifesto de programação reativa em:
     O arquivo '/aquivos/app2/ordem-compra-sucesso.componente.zip' contém o html do 
     componente
 
+**App2 - Ajustando as coisas antes de iniciar com Template Forms**
+
+    Como já desenvolvemos o formulário de pedidos baseado na estratégia de "Databinding" e agora vamos para a estratégia de "TemplateForms", devemos substituir a classe de componente e o template do componente "ordem-compra" pelo conteúdo do arquivo "arquivos/app2/ordem-compra-template-forms.zip" para que voltemos a ter um html estático
+    e possamos aplicar a nova técnica.
+
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
