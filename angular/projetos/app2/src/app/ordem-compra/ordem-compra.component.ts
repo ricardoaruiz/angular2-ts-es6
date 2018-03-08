@@ -55,11 +55,11 @@ export class OrdemCompraComponent implements OnInit {
   constructor(
     private ordemCompraService: OrdemCompraService,
     private carrinhoService: CarrinhoService) { 
-
     }
 
   ngOnInit() {
     this.itens = this.carrinhoService.exibirItens();
+    //this.obtemTotalValorCarrinho();
   }
 
   public confirmarCompra(): void {

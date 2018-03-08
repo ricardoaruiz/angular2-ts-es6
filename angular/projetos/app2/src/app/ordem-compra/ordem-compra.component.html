@@ -35,7 +35,8 @@
             
       <div class="form-row">
         <div class="form-group col d-flex justify-content-end">
-          <h4>Total do pedido: 61.80</h4>
+          <!-- Aqui no template é chamado o método do serviço que calcula o total do carrinho -->
+          <h4>Total do pedido: {{carrinhoService.obtemTotalCarrinho() | currency: 'BRL': true}}</h4>
         </div>
       </div>
       <br />

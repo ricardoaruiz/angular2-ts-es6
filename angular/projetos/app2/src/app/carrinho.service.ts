@@ -18,8 +18,17 @@ class CarrinhoService {
         }
     }
 
+    public obtemTotalCarrinho(): number {
+        let valorTotalCarrinho: number = 0;
+        this.itens.forEach( (itemCarrinhoAtual: ItemCarrinho) => {
+            console.log('totalizando...');
+            valorTotalCarrinho += itemCarrinhoAtual.quantidade * itemCarrinhoAtual.valor;
+        });
+        return valorTotalCarrinho;
+    }
+
     private obtemItemCarrinho(oferta: Oferta): ItemCarrinho {
-        return this.itens.find( (currentItem) => {
+        return this.itens.find( (currentItem: ItemCarrinho) => {
             return currentItem.id === oferta.id;
         })
     }
