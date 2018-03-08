@@ -77,13 +77,15 @@ export class OrdemCompraComponent implements OnInit {
     
       if (!this.itens.length) {
         alert('Você nao selecionou nenhum item')
+
       } else {
 
       let pedido: Pedido = new Pedido(
         this.form.get('endereco').value,
         this.form.get('numero').value,
         this.form.get('complemento').value,
-        this.form.get('formaPagamento').value
+        this.form.get('formaPagamento').value,
+        this.itens
       )
 
       this.ordemCompraService.efetivarCompra(pedido)
