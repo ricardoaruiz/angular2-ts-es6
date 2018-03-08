@@ -44,6 +44,10 @@ class CarrinhoService {
         return this.itens
     }
 
+    public esvaziarCarrinho(): void {
+        this.itens = [];
+    }
+
     private obtemItemCarrinho(item: Oferta | ItemCarrinho): ItemCarrinho {
         return this.itens.find( (currentItem: ItemCarrinho) => {
             return currentItem.id === item.id;

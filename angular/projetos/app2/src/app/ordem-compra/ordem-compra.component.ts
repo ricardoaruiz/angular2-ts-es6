@@ -89,9 +89,10 @@ export class OrdemCompraComponent implements OnInit {
       )
 
       this.ordemCompraService.efetivarCompra(pedido)
-      .subscribe( (idDoPedido: number) => {
-        this.idDoPedido = idDoPedido;
-      } )
+        .subscribe( (idDoPedido: number) => {
+          this.idDoPedido = idDoPedido;
+          this.carrinhoService.esvaziarCarrinho();
+        } )
     }
     
   }
