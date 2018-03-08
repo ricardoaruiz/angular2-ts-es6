@@ -62,7 +62,7 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(): void {
-    console.log(this.form);
+    
     if (this.form.invalid) {
       //Esse loop substitui as linhas abaixo
       Object.keys(this.form.controls).forEach(key => {
@@ -74,19 +74,23 @@ export class OrdemCompraComponent implements OnInit {
       // this.form.get('formaPagamento').markAsTouched()
       return;
     }
-    console.log('Vai submeter o http');
+    
+      if (!this.itens.length) {
+        alert('Você nao selecionou nenhum item')
+      } else {
 
-    let pedido: Pedido = new Pedido(
-      this.form.get('endereco').value,
-      this.form.get('numero').value,
-      this.form.get('complemento').value,
-      this.form.get('formaPagamento').value
-    )
+      let pedido: Pedido = new Pedido(
+        this.form.get('endereco').value,
+        this.form.get('numero').value,
+        this.form.get('complemento').value,
+        this.form.get('formaPagamento').value
+      )
 
-    this.ordemCompraService.efetivarCompra(pedido)
-    .subscribe( (idDoPedido: number) => {
-      this.idDoPedido = idDoPedido;
-    } )
+      this.ordemCompraService.efetivarCompra(pedido)
+      .subscribe( (idDoPedido: number) => {
+        this.idDoPedido = idDoPedido;
+      } )
+    }
     
   }
 
