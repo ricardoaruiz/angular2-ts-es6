@@ -2,16 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { OrdemCompraService } from '../ordem-compra.service'
-//Foi exportado como defaul e por isso não usa as chaves.
-//foi só para mostrar como podemos fazer dessa forma.
-import CarrinhoService from '../carrinho.service';
+import { CarrinhoService } from '../carrinho.service';
 import { Pedido } from '../shared/pedido.model'
 
 @Component({
   selector: 'app-ordem-compra',
   templateUrl: './ordem-compra.component.html',
   styleUrls: ['./ordem-compra.component.css'],
-  providers: [ OrdemCompraService, CarrinhoService ]
+  providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
 

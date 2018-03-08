@@ -10,9 +10,9 @@ class CarrinhoService {
     }
 
     public incluirItem(oferta: Oferta): void {
-        console.log(ItemCarrinho.build(oferta));
+        this.itens.push(ItemCarrinho.build(oferta));
     }
 
 }
 
-export default CarrinhoService;
+export { CarrinhoService };

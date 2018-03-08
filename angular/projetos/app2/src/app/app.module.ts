@@ -21,6 +21,8 @@ import { OrderCompraSucessoComponent } from './order-compra-sucesso/order-compra
 
 import { DescricaoReduzidaPipe } from './util/descricao-reduzida.pipe';
 
+import { CarrinhoService } from './carrinho.service';
+
 //Utilizado para a Internacionalização
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -52,7 +54,8 @@ registerLocaleData(localePt);
     { //Utilizado para a Internacionalização
       provide: LOCALE_ID, 
       useValue: 'pt-BR'
-    }
+    },
+    CarrinhoService
   ],
   bootstrap: [AppComponent]
 })
