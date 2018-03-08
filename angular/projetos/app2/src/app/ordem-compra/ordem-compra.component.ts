@@ -3,7 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { OrdemCompraService } from '../ordem-compra.service'
 import { CarrinhoService } from '../carrinho.service';
-import { Pedido } from '../shared/pedido.model'
+import { Pedido } from '../shared/pedido.model';
+import { ItemCarrinho } from '../shared/item-carrinho.model';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -14,6 +15,8 @@ import { Pedido } from '../shared/pedido.model'
 export class OrdemCompraComponent implements OnInit {
 
   public idDoPedido: number = undefined
+
+  public itens: ItemCarrinho[] = [];
 
   /*
     Referencia para o formulário do template
@@ -56,7 +59,7 @@ export class OrdemCompraComponent implements OnInit {
     }
 
   ngOnInit() {
-    console.log("OrdemCompra - Itens do carrinho: ",this.carrinhoService.exibirItens());
+    this.itens = this.carrinhoService.exibirItens();
   }
 
   public confirmarCompra(): void {
