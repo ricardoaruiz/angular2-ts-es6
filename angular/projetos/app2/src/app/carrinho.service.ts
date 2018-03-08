@@ -12,7 +12,7 @@ class CarrinhoService {
     public incluirItem(oferta: Oferta): void {
         let item = this.obtemItemCarrinho(oferta);
         if(item) {
-            item.quantidade++
+            item.quantidade++;
         } else {
             this.itens.push(ItemCarrinho.build(oferta))
         }
@@ -21,15 +21,32 @@ class CarrinhoService {
     public obtemTotalCarrinho(): number {
         let valorTotalCarrinho: number = 0;
         this.itens.forEach( (itemCarrinhoAtual: ItemCarrinho) => {
-            console.log('totalizando...');
             valorTotalCarrinho += itemCarrinhoAtual.quantidade * itemCarrinhoAtual.valor;
         });
         return valorTotalCarrinho;
     }
 
-    private obtemItemCarrinho(oferta: Oferta): ItemCarrinho {
+    public adicionarQuantidade(itemCarrinho: ItemCarrinho): ItemCarrinho[] {
+        let item = this.obtemItemCarrinho(itemCarrinho);
+        if(item.quantidade < 10) {
+            item.quantidade++;
+        }
+        return this.itens
+    }
+
+    public removerQuantidade(itemCarrinho: ItemCarrinho): ItemCarrinho[] {
+        let item = this.obtemItemCarrinho(itemCarrinho);
+        item.quantidade--;
+        if(item.quantidade === 0) {
+          let indiceItemNoCarrinho = this.itens.indexOf(itemCarrinho);
+          this.itens.splice(indiceItemNoCarrinho, 1);
+        }
+        return this.itens
+    }
+
+    private obtemItemCarrinho(item: Oferta | ItemCarrinho): ItemCarrinho {
         return this.itens.find( (currentItem: ItemCarrinho) => {
-            return currentItem.id === oferta.id;
+            return currentItem.id === item.id;
         })
     }
 

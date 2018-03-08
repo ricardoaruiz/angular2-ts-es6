@@ -90,4 +90,12 @@ export class OrdemCompraComponent implements OnInit {
     } )
     
   }
+
+  public adicionar(itemCarrinho: ItemCarrinho): void {
+    this.itens = this.carrinhoService.adicionarQuantidade(itemCarrinho);
+  }
+
+  public remover(itemCarrinho: ItemCarrinho): void {
+    this.itens = this.carrinhoService.removerQuantidade(itemCarrinho);
+  }
 }
