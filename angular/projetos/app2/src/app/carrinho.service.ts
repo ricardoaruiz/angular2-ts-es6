@@ -8,6 +8,10 @@ class CarrinhoService {
         return this.itens;
     }
 
+    public adicionarItem(): void {
+        
+    }
+
 }
 
 export default CarrinhoService;

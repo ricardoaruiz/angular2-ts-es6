@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-
-import { OfertasService } from '../ofertas.service';
-import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subscription } from 'rxjs/Subscription';
+
+import { OfertasService } from '../ofertas.service';
+import CarrinhoService from '../carrinho.service';
+import { Oferta } from '../shared/oferta.model';
 
 /* 
 Import necessário para utilizar os operadores do Observable 
@@ -17,7 +18,7 @@ import 'rxjs/Rx';
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [ OfertasService ]
+  providers: [ OfertasService, CarrinhoService ]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
@@ -28,7 +29,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   constructor(
       private route: ActivatedRoute,
-      private ofertaService: OfertasService) { }
+      private ofertaService: OfertasService,
+      private carrinhoService: CarrinhoService) { }
 
   ngOnInit() {
     // Mostrando como usar o subscribe para obter parâmetros de rota
@@ -100,7 +102,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
       () => console.log('Finalizado')
     )
 
-
+    console.log("Oferta - Itens do carrinho: ", this.carrinhoService.exibirItens())
   }
 
   ngOnDestroy() {
