@@ -1,44 +1,58 @@
 <div class="container">
-  <div class="ordem-compra" *ngIf="idDoPedido === undefined else msgPedidoCriado">
+
+  <!-- Form para completar a compra -->
+  <div class="ordem-compra" *ngIf="idDoPedido === undefined else msgPedidoFinalizado">
     <form [formGroup]="form" (ngSubmit)="confirmarCompra()" novalidate>
     
       <h5>Sua Compra</h5>
       <hr />
 
-      <div *ngFor="let item of itens"
-           class="form-row" 
-           style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+      <div *ngIf="itens.length else msgCarrinhoVazio">
+        <div *ngFor="let item of itens"
+            class="form-row" 
+            style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
 
-        <div class="form-group col-sm-1">
-          <img [src]="item.img.url" class="img-fluid">
-        </div>
-        <div class="form-group col-sm-6">
-          {{item.titulo}}
-          <br />
-          {{item.descricao_oferta}}
-        </div>
+          <div class="form-group col-sm-1">
+            <img [src]="item.img.url" class="img-fluid">
+          </div>
+          <div class="form-group col-sm-6">
+            {{item.titulo}}
+            <br />
+            {{item.descricao_oferta}}
+          </div>
 
-        <div>
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-link" (click)="remover(item)">-</button>
-              {{item.quantidade}}
-              <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
+          <div>
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-link" (click)="remover(item)">-</button>
+                {{item.quantidade}}
+                <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="form-group col-sm-3 d-flex justify-content-end">
-          {{item.quantidade * item.valor | currency: 'BRL': true}}
+          <div class="form-group col-sm-3 d-flex justify-content-end">
+            {{item.quantidade * item.valor | currency: 'BRL': true}}
+          </div>
+        </div>
+              
+        <div class="form-row">
+          <div class="form-group col d-flex justify-content-end">
+            <!-- Aqui no template é chamado o método do serviço que calcula o total do carrinho -->
+            <h4>Total do pedido: {{carrinhoService.obtemTotalCarrinho() | currency: 'BRL': true}}</h4>
+          </div>
         </div>
       </div>
-            
-      <div class="form-row">
-        <div class="form-group col d-flex justify-content-end">
-          <!-- Aqui no template é chamado o método do serviço que calcula o total do carrinho -->
-          <h4>Total do pedido: {{carrinhoService.obtemTotalCarrinho() | currency: 'BRL': true}}</h4>
-        </div>
-      </div>
+
+      <!-- Mensagem de carrinho vazio -->
+      <ng-template #msgCarrinhoVazio>
+        <div class="row" style="margin-top: 50px">
+            <div class="form-group col d-flex justify-content-center">
+              Seu carrinho está vazio! Não perca tempo, aproveite as ofertas
+          </div>
+        </div>    
+      </ng-template>
+
       <br />
 
       <h5>Dados de entrega</h5>
@@ -116,13 +130,15 @@
       <button 
         type="submit" 
         class="btn btn-primary btn-lg"
-        
+        [disabled]="itens.length === 0"
       >Cofirmar compra</button>
     </form>
   </div>
-  
-  <ng-template #msgPedidoCriado class="ordem-compra">
+
+  <!-- Mensagem de compra realizada com sucesso -->
+  <ng-template #msgPedidoFinalizado class="ordem-compra">
     <app-order-compra-sucesso [idPedidoCompra]=idDoPedido></app-order-compra-sucesso>
   </ng-template>
+
 
 </div>

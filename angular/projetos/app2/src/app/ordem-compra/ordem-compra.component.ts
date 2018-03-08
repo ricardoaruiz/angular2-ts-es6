@@ -15,7 +15,6 @@ import { ItemCarrinho } from '../shared/item-carrinho.model';
 export class OrdemCompraComponent implements OnInit {
 
   public idDoPedido: number = undefined
-
   public itens: ItemCarrinho[] = [];
 
   /*
