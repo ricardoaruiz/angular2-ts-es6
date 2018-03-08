@@ -25,7 +25,7 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/toPromise';
 
 import { Oferta } from './shared/oferta.model';
-import { URL_API } from './app.api';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class OfertasService {
@@ -37,7 +37,7 @@ export class OfertasService {
     */
     public getOfertas(): Promise<Oferta[]> {
 
-        return this.http.get(`${URL_API}/ofertas?destaque=true`)
+        return this.http.get(`${environment.baseURL}/ofertas?destaque=true`)
             .toPromise()
                 .then( (resposta: Response) => {                    
                     return resposta.json();
@@ -51,7 +51,7 @@ export class OfertasService {
      */
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
 
-        return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
+        return this.http.get(`${environment.baseURL}/ofertas?categoria=${categoria}`)
             .toPromise()
                 .then( (resposta: Response) => {
                     return resposta.json();
@@ -65,7 +65,7 @@ export class OfertasService {
      * @param id 
      */
     public getOfertaPorId(id: number): Promise<Oferta> {
-        return this.http.get(`${URL_API}/ofertas?id=${id}`)
+        return this.http.get(`${environment.baseURL}/ofertas?id=${id}`)
             .toPromise()
             .then( (resposta: Response) => {
                 /*
@@ -84,7 +84,7 @@ export class OfertasService {
      * @returns Promisse com os dados da descrição de como usar
      */
     public getComoUsarOfertaPorId(id: number): Promise<string> {
-        return this.http.get(`${URL_API}/como-usar?id=${id}`)
+        return this.http.get(`${environment.baseURL}/como-usar?id=${id}`)
             .toPromise()
                 .then( (resposta: Response) => {
                     return resposta.json()[0].descricao;
@@ -98,7 +98,7 @@ export class OfertasService {
      * @returns Promisse com os dados da descrição de onde fica
      */
     public getOndeFicaOfertaPorId(id: number): Promise<string> {
-        return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+        return this.http.get(`${environment.baseURL}/onde-fica?id=${id}`)
             .toPromise()
                 .then( (resposta: Response) => {
                     return resposta.json()[0].descricao;
@@ -116,7 +116,7 @@ export class OfertasService {
         /* foi usado o campo descricao_oferta_like que não existe no retorno
             pois o json server implementa buscas com like dessa forma
         */
-        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+        return this.http.get(`${environment.baseURL}/ofertas?descricao_oferta_like=${termo}`)
             .retry(10)
             .map( (resposta: Response) => resposta.json());
     }
