@@ -65,11 +65,11 @@ export class OfertaComponent implements OnInit, OnDestroy {
      * em: http://reactivex.io/documentation/operators.html
      */
     
-    // let tempo = Observable.interval(2000)
+    let tempo = Observable.interval(2000)
 
-    // this.tempoObservableSubscription = tempo.subscribe( (intervalo: number) => { 
-    //   console.log(intervalo) 
-    // } )
+    this.tempoObservableSubscription = tempo.subscribe( (intervalo: number) => { 
+      console.log(intervalo) 
+    } )
 
 
 /* 
