@@ -10,7 +10,18 @@ class CarrinhoService {
     }
 
     public incluirItem(oferta: Oferta): void {
-        this.itens.push(ItemCarrinho.build(oferta));
+        let item = this.obtemItemCarrinho(oferta);
+        if(item) {
+            item.quantidade++
+        } else {
+            this.itens.push(ItemCarrinho.build(oferta))
+        }
+    }
+
+    private obtemItemCarrinho(oferta: Oferta): ItemCarrinho {
+        return this.itens.find( (currentItem) => {
+            return currentItem.id === oferta.id;
+        })
     }
 
 }
