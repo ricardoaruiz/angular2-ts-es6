@@ -1,4 +1,5 @@
 import { ItemCarrinho } from './shared/item-carrinho.model';
+import { Oferta } from './shared/oferta.model';
 
 class CarrinhoService {
 
@@ -8,8 +9,8 @@ class CarrinhoService {
         return this.itens;
     }
 
-    public adicionarItem(): void {
-        
+    public incluirItem(oferta: Oferta): void {
+        console.log(ItemCarrinho.build(oferta));
     }
 
 }

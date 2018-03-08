@@ -65,11 +65,11 @@ export class OfertaComponent implements OnInit, OnDestroy {
      * em: http://reactivex.io/documentation/operators.html
      */
     
-    let tempo = Observable.interval(2000)
+    // let tempo = Observable.interval(2000)
 
-    this.tempoObservableSubscription = tempo.subscribe( (intervalo: number) => { 
-      console.log(intervalo) 
-    } )
+    // this.tempoObservableSubscription = tempo.subscribe( (intervalo: number) => { 
+    //   console.log(intervalo) 
+    // } )
 
 
 /* 
@@ -101,8 +101,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
       (erro: string) => console.log(erro),
       () => console.log('Finalizado')
     )
-
-    console.log("Oferta - Itens do carrinho: ", this.carrinhoService.exibirItens())
   }
 
   ngOnDestroy() {
@@ -112,6 +110,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
  */
     this.tempoObservableSubscription.unsubscribe();
     this.meuObservableTesteSubscription.unsubscribe();
+  }
+
+  public adicionarItemCarrinho(oferta: Oferta): void {
+    this.carrinhoService.incluirItem(oferta);
   }
 
   private carregarOferta(id: number): void {
