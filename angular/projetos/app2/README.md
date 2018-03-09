@@ -177,6 +177,14 @@ Dar uma olhada no manifesto de programação reativa em:
     Como já desenvolvemos o formulário de pedidos baseado na estratégia de "TemplateForms" e agora vamos para a estratégia de "ReactiveForms", devemos substituir a classe do componente e o template do componente "ordem-compra" pelo conteúdo do arquivo "arquivos/app2/ordem-compra.reactive-formst.zip" para que voltemos a ter um html estático
     e possamos aplicar a nova técnica.
 
+**App2 - Deploy local via http-server**
+
+    Para instalar o http-server, rodar o comando abaixo:
+        `npm install -g http-server`
+
+    Sua documentação encontra-se em https://www.npmjs.com/package/http-server
+
+    Para subir a aplicação, basta ir na linha de comando, navegar até o diretório de distribuição da aplicação e digitar `http-server`
 
 =====================================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
