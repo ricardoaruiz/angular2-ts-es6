@@ -11,7 +11,10 @@
     `ng g c acesso/login`
 
 **App3-Ajustando os componentes AppComponente e AcessoComponent**
-    Utilizar o arquivo "arquivos-necessarios.zip" para ter a parte visual do componente acesso já pronto.
+    Utilizar o arquivo "arquivos/ajustando-appComponent-acessoComponent.zip" para ter a parte visual do componente acesso já pronto.
+
+**App3-Ajustando o componente Banner**
+    Utilizar o arquivo "arquivos/ajustando-banner.zip" para ter a parte visual do componente banner já pronto.
 
 # App3
 
