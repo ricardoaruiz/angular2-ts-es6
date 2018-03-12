@@ -16,6 +16,9 @@
 **App3-Ajustando o componente Banner**
     Utilizar o arquivo "arquivos/ajustando-banner.zip" para ter a parte visual do componente banner já pronto.
 
+**App3-Ajustando o componente Login**
+    Utilizar o arquivo "arquivos/ajustando-login.zip" para ter a parte visual do componente login já pronto.
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
