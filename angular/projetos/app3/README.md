@@ -43,7 +43,9 @@
     Descomentar o trecho e ajustar para que fique da seguinte forma:
     
         `import 'web-animations-js/web-animations.min.js'`
-    
+
+**App3-Animations, triggers, states e styles**    
+    O arquivo 'animations-triggers-state-styles.zip' contém as imagens que serão utilizadas e devem ser colocadas dentro de 'assets/banner'
 
 # App3
 
