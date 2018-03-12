@@ -27,6 +27,24 @@
 
     Utilizar o site "https://www.favicon-generator.org/" para gerar o favicon
 
+**App3-Instalação e setup do módulo de animações do Angular 4 + web-animations-js**
+    Rodar os dois comandos abaixo:
+
+    `npm install --save @angular/animations`
+    `npm install --save web-animations-js`
+
+    - Em 'app.module' importar o seguinte módulo:
+
+        `import { BrowserAnimationsModule } from '@angular/platform-browser/animations'`
+
+    - Colocar o módulo no metadado imports dessa mesma classe.
+
+    - No arquivo polyfills acrescentar a biblioteca web-animations-js, fazer um find no arquivo por "animations" e será encontrado um trecho já comentado.
+    Descomentar o trecho e ajustar para que fique da seguinte forma:
+    
+        `import 'web-animations-js/web-animations.min.js'`
+    
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
