@@ -1,3 +1,18 @@
+**App3-Iniciando o projeto Instagram Clone**
+    `ng new app3`
+
+**App3-Instalando o Bootstrap, JQuery e Popper no projeto**
+    `npm install --save bootstrap jquery popper.js`
+
+**App3-Criando os componentes Acesso, Banner, Login e Cadastro**
+    `ng g c acesso`
+    `ng g c acesso/banner`
+    `ng g c acesso/cadastro`
+    `ng g c acesso/login`
+
+**App3-Ajustando os componentes AppComponente e AcessoComponent**
+    Utilizar o arquivo "arquivos-necessarios.zip" para ter a parte visual do componente acesso já pronto.
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
