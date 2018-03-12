@@ -1,5 +1,7 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 
+import { Imagem } from './imagem.model';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -18,15 +20,18 @@ import { Component, OnInit, trigger, state, style, transition, animate } from '@
 })
 export class BannerComponent implements OnInit {
 
-  public estado: string = 'escondido';
+  public imagens: Imagem[] = [
+    new Imagem('escondido','/assets/banner-acesso/img_1.png'),
+    new Imagem('escondido','/assets/banner-acesso/img_2.png'),
+    new Imagem('escondido','/assets/banner-acesso/img_3.png'),
+    new Imagem('escondido','/assets/banner-acesso/img_4.png'),
+    new Imagem('escondido','/assets/banner-acesso/img_5.png')
+  ]
 
   constructor() { }
 
   ngOnInit() {
-  }
 
-  public toggleEstado(): void {
-    this.estado = this.estado == 'escondido' ? 'visivel' : 'escondido';
   }
 
 }
