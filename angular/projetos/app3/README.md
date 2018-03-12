@@ -22,6 +22,11 @@
 **App3-Ajustando o componente Cadstro**
     Utilizar o arquivo "arquivos/ajustando-cadastro.zip" para ter a parte visual do componente cadastro já pronto.
 
+**App3-Criando e alterando o favicon**
+    Utilizar os arquivos "arquivos/icone.png" e "arquivos/alterando-favicon.zip" para ter a parte visual do componente cadastro já pronto.
+
+    Utilizar o site "https://www.favicon-generator.org/" para gerar o favicon
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
