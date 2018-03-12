@@ -21,7 +21,7 @@ import { Imagem } from './imagem.model';
 export class BannerComponent implements OnInit {
 
   public imagens: Imagem[] = [
-    new Imagem('escondido','/assets/banner-acesso/img_1.png'),
+    new Imagem('visivel','/assets/banner-acesso/img_1.png'),
     new Imagem('escondido','/assets/banner-acesso/img_2.png'),
     new Imagem('escondido','/assets/banner-acesso/img_3.png'),
     new Imagem('escondido','/assets/banner-acesso/img_4.png'),
@@ -31,7 +31,31 @@ export class BannerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.animarBanner()
+    },3000);
+  }
 
+  private animarBanner(): void {
+
+    let indiceProximaImagem: number;
+
+    for(let i:number=0; i<this.imagens.length; i++) {
+
+      if(this.imagens[i].estado === 'visivel') {
+        this.imagens[i].estado = 'escondido'
+
+        indiceProximaImagem = i === 4 ? 0 : i+1;
+        this.imagens[indiceProximaImagem].estado = 'visivel';
+
+        break;
+      }
+
+    }
+
+    setTimeout(() => {
+      this.animarBanner()
+    },3000);
   }
 
 }
