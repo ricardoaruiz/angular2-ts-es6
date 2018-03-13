@@ -59,7 +59,6 @@
 **App3-Cadastrando usuario no Firebase - Parte 1**
     O arquivo 'documentos/app3/12-CadastrandoUsuarioFirebaseParte1.mp4' é um video que mostra de maneira detalhada como criar usuário no Firebase
 
-
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
