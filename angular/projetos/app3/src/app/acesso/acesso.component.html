@@ -5,8 +5,8 @@
     </div>
 
     <div class="col-sm-6 d-flex justify-content-start" [@animacao-painel]="estadoPainel">
-      <!--<app-login></app-login>-->
-      <app-cadastro></app-cadastro>
+      <app-login *ngIf="!cadastro" (mostrarCadastro)="trocarPainel($event)"></app-login>
+      <app-cadastro *ngIf="cadastro" (mostrarLogin)="trocarPainel($event)"></app-cadastro>
     </div>  
   </div>
 </div>

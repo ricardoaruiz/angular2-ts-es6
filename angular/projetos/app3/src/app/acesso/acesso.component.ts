@@ -36,15 +36,22 @@ deslizando o componente da esquerda para direita e vice-versa*/
 })
 export class AcessoComponent implements OnInit {
 
-  // Estado para o banner
+  // Estado para o banner.
   public estadoBanner:string = 'criado';
 
-  // Estado para o painel de login
+  // Estado para o painel de login.
   public estadoPainel: string = 'criado';
+
+  // Indica se o formulário de cadastro está sendo exibido.
+  public cadastro: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public trocarPainel(painel: string): void {
+    this.cadastro = painel === 'cadastro' ? true : false
   }
 
 }
