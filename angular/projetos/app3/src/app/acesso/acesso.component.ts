@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 /*Cria uma animação na criação do componente void => criado
 deslizando o componente da esquerda para direita e vice-versa*/
@@ -7,6 +7,20 @@ deslizando o componente da esquerda para direita e vice-versa*/
   selector: 'app-acesso',
   templateUrl: './acesso.component.html',
   styleUrls: ['./acesso.component.css'],
+  //Criação de animação
+  //  "animation" é um array de "trigger", onde cada "trigger" é associada a um elemento
+  //  do template para realizar a animação.
+  //
+  //  Nas triggers criamos os "state" que tem suas características (css) e criamos
+  //  as "transition" entre esses estados.
+  //
+  //  Por fim temos o "animate" que efetivamente executa a animação. 
+  //  Onde temos:
+  //    - Primeiro parâmetro a duração da animação
+  //    - Segundo parâmetro um delay (tempo antes de animação)
+  //    - Terceiro parâmetro a aceleração que pode ser vista nesse link:
+  //        https://angular.io/guide/animations#easing
+  //        http://easings.net/
   animations: [
     trigger('animacao-banner', [
       state('criado',style({
@@ -29,7 +43,64 @@ deslizando o componente da esquerda para direita e vice-versa*/
           "opacity": 0,
           "transform": 'translate(120px, 0)'
         }),
-        animate('1000ms 0s ease-in-out')
+        animate('1500ms 0s ease-in-out', 
+          //Criação dos keyframes para dar mais detalhes a animação
+          keyframes([
+            style({
+              "offset": 0.15, //ponto que equivale a 15% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateX(0)"
+            }),
+            style({
+              "offset": 0.86, //ponto que equivale a 86% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateX(0)"
+            }),
+            style({
+              "offset": 0.88, //ponto que equivale a 88% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateY(-10px)"
+            }),
+            style({
+              "offset": 0.90, //ponto que equivale a 90% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateY(10px)"
+            }),
+            style({
+              "offset": 0.92, //ponto que equivale a 92% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateY(-10px)"
+            }),
+            style({
+              "offset": 0.94, //ponto que equivale a 94% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateY(10px)"
+            }),
+            style({
+              "offset": 0.96, //ponto que equivale a 96% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateY(-10px)"
+            }),
+            style({
+              "offset": 0.98, //ponto que equivale a 98% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateY(10px)"
+            }),                        
+            style({
+              "offset": 1, //ponto que equivale a 100% do tempo
+              //propriedades css a serem aplicadas nesse instante de tempo
+              "opacity": 1,
+              "transform": "translateX(0)"
+            })
+        ]))
       ])
     ])    
   ]
