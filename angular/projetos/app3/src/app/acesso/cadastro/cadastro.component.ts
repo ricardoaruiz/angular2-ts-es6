@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Usuario } from '../model/usuario.model';
-import { AcessoService } from '../service/acesso.service';
+import { AutenticacaoService } from '../service/autenticacao.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,7 +18,7 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private acessoService: AcessoService
+    private autenticacaoService: AutenticacaoService
   ) { }
 
   ngOnInit() {
@@ -44,7 +44,8 @@ export class CadastroComponent implements OnInit {
       return;
     }
 
-    this.acessoService.cadastrarUsuario(Usuario.buildFromFormGroup(this.formCadastro));    
+    this.autenticacaoService.cadastrarUsuario(
+      Usuario.buildFromFormGroup(this.formCadastro));    
   }
 
   /**
