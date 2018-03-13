@@ -4,7 +4,16 @@
       <app-banner></app-banner>
     </div>
 
-    <div class="col-sm-6 d-flex justify-content-start" [@animacao-painel]="estadoPainel">
+    <!-- Esse trecho está animado
+    O comando [@animacao-painel]="estadoPainel" vincula o componente da tela aos metadados
+    animação na classe do componente.
+    Os comandos (@animacao-painel.start)="inicioDaAnimacao()" e (@animacao-painel.done)="fimDaAnimacao()"
+    informam quais são os métodos que serão executados no início e no fim da animação -->
+    <div 
+        class="col-sm-6 d-flex justify-content-start" 
+        [@animacao-painel]="estadoPainel"
+        (@animacao-painel.start)="inicioDaAnimacao()"
+        (@animacao-painel.done)="fimDaAnimacao()">
       <app-login *ngIf="!cadastro" (mostrarCadastro)="trocarPainel($event)"></app-login>
       <app-cadastro *ngIf="cadastro" (mostrarLogin)="trocarPainel($event)"></app-cadastro>
     </div>  

@@ -29,7 +29,7 @@ deslizando o componente da esquerda para direita e vice-versa*/
       transition('void => criado', [
         style({
           "opacity": 0,
-          "transform": 'translate(-120px, 0)'
+          "transform": 'translate(-300px, 0)'
         }),
         animate('1000ms 0s ease-in-out')
       ])
@@ -41,9 +41,9 @@ deslizando o componente da esquerda para direita e vice-versa*/
       transition('void => criado', [
         style({
           "opacity": 0,
-          "transform": 'translate(120px, 0)'
+          "transform": 'translate(300px, 0)'
         }),
-        animate('1500ms 0s ease-in-out', 
+        animate('2000ms 0s ease-in-out', 
           //Criação dos keyframes para dar mais detalhes a animação
           keyframes([
             style({
@@ -125,4 +125,17 @@ export class AcessoComponent implements OnInit {
     this.cadastro = painel === 'cadastro' ? true : false
   }
 
+  /**
+   * Executado no ínicio da animação do painel de login
+   */
+  public inicioDaAnimacao(): void {
+    console.log('Inicio da animação');
+  }
+
+  /** 
+   * Executado no fim da animação do painel de login
+  */
+  public fimDaAnimacao(): void {
+    console.log('Fim da animação');
+  }  
 }
