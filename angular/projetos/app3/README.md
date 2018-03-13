@@ -47,6 +47,9 @@
 **App3-Animations, triggers, states e styles**    
     O arquivo 'animations-triggers-state-styles.zip' contém as imagens que serão utilizadas e devem ser colocadas dentro de 'assets/banner'
 
+**App3-Incluindo o Firebase SDK no projeto**
+    `npm install --save firebase`
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
