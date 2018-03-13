@@ -40,15 +40,21 @@ export class CadastroComponent implements OnInit {
 
   public cadastrarUsuario(): void {
     if(this.formCadastro.invalid) {
-      Object.keys(this.formCadastro.controls).forEach( key => {
-        this.formCadastro.controls[key].markAsTouched();
-      })
+      this.marcaCamposComoVisitados();
       return;
     }
 
-    let usuario: Usuario = this.formCadastro.value;
-    this.acessoService.cadastrarUsuario(usuario);
-    
+    this.acessoService.cadastrarUsuario(Usuario.buildFromFormGroup(this.formCadastro));    
+  }
+
+  /**
+   * Marca todos os campos do formulario como touched, para disparar
+   * as validações de cada campo.
+   */
+  private marcaCamposComoVisitados(): void {
+    Object.keys(this.formCadastro.controls).forEach( key => {
+       this.formCadastro.controls[key].markAsTouched();
+    })
   }
 
 }
