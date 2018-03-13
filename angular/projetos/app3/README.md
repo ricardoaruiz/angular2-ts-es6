@@ -53,6 +53,9 @@
 **App3-Conhecendo o console do Firebase**
     O arquivo 'documentos/app3/10-ConecendoOConsoleDoFirebase.mp4' é um video que mostra de maneira detalhada o console do Firebase
 
+**App3-Conectando o Firebase SDK do projeto com o Backend do Firebase**
+    O arquivo 'documentos/app3/11-ConectandoOFirebaseSDKdoProjetoComOBackendDoFirebase.mp4' é um video que mostra de maneira detalhada o console do Firebase
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
