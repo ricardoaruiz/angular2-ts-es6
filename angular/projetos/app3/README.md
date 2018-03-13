@@ -54,7 +54,11 @@
     O arquivo 'documentos/app3/10-ConecendoOConsoleDoFirebase.mp4' é um video que mostra de maneira detalhada o console do Firebase
 
 **App3-Conectando o Firebase SDK do projeto com o Backend do Firebase**
-    O arquivo 'documentos/app3/11-ConectandoOFirebaseSDKdoProjetoComOBackendDoFirebase.mp4' é um video que mostra de maneira detalhada o console do Firebase
+    O arquivo 'documentos/app3/11-ConectandoOFirebaseSDKdoProjetoComOBackendDoFirebase.mp4' é um video que mostra de maneira detalhada como conectar a aplicação Angular ao Firebase
+
+**App3-Cadastrando usuario no Firebase - Parte 1**
+    O arquivo 'documentos/app3/12-CadastrandoUsuarioFirebaseParte1.mp4' é um video que mostra de maneira detalhada como criar usuário no Firebase
+
 
 # App3
 
