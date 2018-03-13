@@ -50,6 +50,9 @@
 **App3-Incluindo o Firebase SDK no projeto**
     `npm install --save firebase`
 
+**App3-Conhecendo o console do Firebase**
+    O arquivo 'documentos/app3/10-ConecendoOConsoleDoFirebase.mp4' é um video que mostra de maneira detalhada o console do Firebase
+
 # App3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
