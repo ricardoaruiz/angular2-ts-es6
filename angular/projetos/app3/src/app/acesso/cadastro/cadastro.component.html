@@ -1,13 +1,14 @@
 <div class="card" style="width: 20rem;">
   <div class="card-body">
     <div class="card-title"></div>
-    
-    <form>
+       
+    <form [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()" novalidate>
       <div class="form-group">
         <input 
           type="email" 
           class="form-control" 
           placeholder="E-mail"
+          formControlName="email"
         >
       </div>
       <div class="form-group">
@@ -15,6 +16,7 @@
           type="text"
           class="form-control" 
           placeholder="Nome completo"
+          formControlName="nomeCompleto"
         >
       </div>
       <div class="form-group">
@@ -22,6 +24,7 @@
           type="text"
           class="form-control" 
           placeholder="Nome de usuário"
+          formControlName="nomeUsuario"
         >
       </div>
       <div class="form-group">
@@ -29,8 +32,14 @@
           type="password"
           class="form-control" 
           placeholder="Senha"
+          formControlName="senha"
         >
       </div>
+      <small class="text text-danger d-flex justify-content-center"
+        *ngIf="formCadastro.touched && !formCadastro.valid">
+        Campos inválidos ou obrigatórios
+      </small>
+      <br/>
       <button type="submit" class="btn btn-primary btn-sm btn-block">Cadastre-se</button>
     </form>
     <hr />
