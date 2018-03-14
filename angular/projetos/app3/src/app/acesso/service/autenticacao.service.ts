@@ -6,6 +6,11 @@ import * as firebase from 'firebase';
 import { Usuario } from '../model/usuario.model';
 import { Observer } from 'rxjs/Observer';
 
+//Chave para o tokenId no localStorage
+const TOKEN_ID = 'tokenId';
+
+//Chave para o último email logado no localStorage
+const ULTIMO_EMAIL_LOGADO: string = 'ultimo-email-logado';
 
 @Injectable()
 export class AutenticacaoService {
@@ -79,6 +84,7 @@ export class AutenticacaoService {
         firebase.auth().currentUser.getIdToken()
           .then( (idToken: string) => {
             this.guardaTokenLocalStorage(idToken);
+            this.guardaEmailUltimoUsuarioLogadoLocalStorage(usuario.email);
             observer.next(this.tokenId);
           })
           .catch( (erro: firebase.FirebaseError) => {
@@ -124,9 +130,7 @@ export class AutenticacaoService {
             console.log(erro);
             observer.error('Logoff-NOk');
           })
-    })
-
-    
+    })    
   }
 
   /**
@@ -135,11 +139,18 @@ export class AutenticacaoService {
   public autenticado(): boolean {   
     
     if (this.tokenId === undefined && 
-        localStorage.getItem('tokenId') != null) {
-          this.tokenId = localStorage.getItem('tokenId')
+        localStorage.getItem(TOKEN_ID) != null) {
+          this.tokenId = localStorage.getItem(TOKEN_ID)
     }
 
     return this.tokenId !== undefined && this.tokenId != null;
+  }
+
+  /**
+   * Retorna o email do último usuário logado na aplicação
+   */
+  public getEmailUltimoUsuarioLogadoLocalStorage(): string {
+    return localStorage.getItem(ULTIMO_EMAIL_LOGADO);
   }
 
   /**
@@ -148,15 +159,23 @@ export class AutenticacaoService {
    */
   private guardaTokenLocalStorage(idToken: string): void {
     this.tokenId = idToken;
-    localStorage.setItem('tokenId',idToken);    
+    localStorage.setItem(TOKEN_ID,idToken);    
   }
 
   /**
    * Remove o token de autenticação do localstorage
    */
   private removeTokenLocalStorage(): void {
-    localStorage.removeItem('tokenId');
+    localStorage.removeItem(TOKEN_ID);
     this.tokenId = undefined;    
+  }
+
+  /**
+   * Guarda o email do último login
+   * @param email 
+   */
+  private guardaEmailUltimoUsuarioLogadoLocalStorage(email: string): void {
+    localStorage.setItem(ULTIMO_EMAIL_LOGADO, email);
   }
 
 }

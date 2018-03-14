@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.email) {
+      this.email = this.autenticacaoService.getEmailUltimoUsuarioLogadoLocalStorage();
+    }
     this.formLogin.controls['email'].setValue(this.email);
   }
 
