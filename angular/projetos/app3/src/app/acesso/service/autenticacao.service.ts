@@ -11,7 +11,7 @@ import { Observer } from 'rxjs/Observer';
 export class AutenticacaoService {
 
   // Token retornado pela autenticação
-  public tokenId: string;
+  public tokenId: string = undefined;
 
   constructor() { }
 
@@ -105,6 +105,13 @@ export class AutenticacaoService {
 
     })
 
+  }
+
+  /**
+   * Informa se o usuário está autenticado
+   */
+  public autenticado(): boolean {
+    return this.tokenId !== undefined;
   }
 
 }
