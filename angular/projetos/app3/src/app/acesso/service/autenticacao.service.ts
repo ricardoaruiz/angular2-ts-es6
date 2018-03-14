@@ -74,11 +74,11 @@ export class AutenticacaoService {
     return new Observable( (observer: Observer<string>) => {
       
       firebase.auth().signInWithEmailAndPassword(usuario.email, usuario.senha)
-      .then( (resposta: firebase.User) => {
+      .then( (usuario: firebase.User) => {
 
         firebase.auth().currentUser.getIdToken()
           .then( (idToken: string) => {
-            this.tokenId = idToken;
+            this.guardaTokenLocalStorage(idToken);
             observer.next(this.tokenId);
           })
           .catch( (erro: firebase.FirebaseError) => {
@@ -110,8 +110,23 @@ export class AutenticacaoService {
   /**
    * Informa se o usuário está autenticado
    */
-  public autenticado(): boolean {
-    return this.tokenId !== undefined;
+  public autenticado(): boolean {   
+    
+    if (this.tokenId === undefined && 
+        localStorage.getItem('tokenId') != null) {
+          this.tokenId = localStorage.getItem('tokenId')
+    }
+
+    return this.tokenId !== undefined && this.tokenId != null;
+  }
+
+  /**
+   * Guarda o token de autenticação no localStorage
+   * @param idToken 
+   */
+  private guardaTokenLocalStorage(idToken: string): void {
+    this.tokenId = idToken;
+    localStorage.setItem('tokenId',idToken);    
   }
 
 }
