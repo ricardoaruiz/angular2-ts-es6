@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   public formLogin: FormGroup;
 
+  public usuarioNaoEncontrado: boolean = false;
+
   /**
    * Construtor da classe do componente.
    * 
@@ -49,7 +51,21 @@ export class LoginComponent implements OnInit {
       })
       return;      
     }
-    this.autenticacaoService.autenticar(Usuario.buildFromFormGroup(this.formLogin));
+    this.autenticacaoService
+      .autenticar(Usuario.buildFromFormGroup(this.formLogin))
+        .then ( (resposta: any) => {
+          console.log('Login ok', resposta)
+          this.usuarioNaoEncontrado = false;
+        })
+        .catch ( (erro: any) => {
+          console.log('login erro', erro);
+          if (erro.code === 'auth/user-not-found') {
+            this.usuarioNaoEncontrado = true;
+          } else {
+            this.usuarioNaoEncontrado = false;
+          }  
+        })
+    
   }
 
   /**
@@ -57,8 +73,8 @@ export class LoginComponent implements OnInit {
    */
   private buildFormularioLogin(): void {
     this.formLogin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required]]
+      email: ['ricardo.almendro.ruiz@gmail.com', [Validators.required, Validators.email]],
+      senha: ['123456', [Validators.required]]
     });
   }
 
