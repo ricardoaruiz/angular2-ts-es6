@@ -16,6 +16,11 @@ export class CadastroComponent implements OnInit {
 
   public formCadastro: FormGroup;
 
+  /**
+   * Construtor do componente
+   * @param formBuilder 
+   * @param autenticacaoService 
+   */
   constructor(
     private formBuilder: FormBuilder,
     private autenticacaoService: AutenticacaoService
@@ -25,6 +30,9 @@ export class CadastroComponent implements OnInit {
     this.createForm();
   }
 
+  /**
+   * Cria a referência do formulário
+   */
   private createForm(): void {
     this.formCadastro = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,10 +42,16 @@ export class CadastroComponent implements OnInit {
     })
   }
 
+  /**
+   * Chama o painel de login
+   */
   public irParaLogin(): void {
     this.mostrarLogin.emit('login');
   }
 
+  /**
+   * Realiza o cadastro de um novo usúario
+   */
   public cadastrarUsuario(): void {
     if(this.formCadastro.invalid) {
       this.marcaCamposComoVisitados();
@@ -45,7 +59,8 @@ export class CadastroComponent implements OnInit {
     }
 
     this.autenticacaoService.cadastrarUsuario(
-      Usuario.buildFromFormGroup(this.formCadastro));    
+      Usuario.buildFromFormGroup(this.formCadastro))
+        .then ( () => this.irParaLogin() )
   }
 
   /**

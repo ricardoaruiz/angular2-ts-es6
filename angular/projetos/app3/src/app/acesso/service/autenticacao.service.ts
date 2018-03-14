@@ -13,11 +13,11 @@ export class AutenticacaoService {
    * 
    * @param usuario 
    */
-  public cadastrarUsuario(usuario: Usuario): void {
+  public cadastrarUsuario(usuario: Usuario): Promise<any> {
     console.log('Chegamos até o serviço ',usuario);    
 
     //Criando um usuário no Authentication do Firebase
-    firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
+    return firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
       .then( (resposta: any) => {
 
         //remover a senha do atributo senha do objeto usuário
@@ -30,7 +30,7 @@ export class AutenticacaoService {
           .ref(`usuario_detalhe/${btoa(usuario.email)}`)
             .set(usuario)
               .catch( (erro: Error) => {
-                console.log('Erro ao criar os dados do usuário Database', erro);                
+                console.log('Erro ao criar os dados do usuário Database', erro);
               })
 
       })
