@@ -108,6 +108,28 @@ export class AutenticacaoService {
   }
 
   /**
+   * Sai da aplicação
+   */
+  public logoff(): Observable<string> {
+
+    return new Observable( (observer: Observer<string>) => {
+      
+      //Remove a autenticação do Firebase
+      firebase.auth().signOut()
+         .then( () => {
+            this.removeTokenLocalStorage();
+            observer.next('Logoff-Ok');
+          })
+          .catch( (erro: Error) => {
+            console.log(erro);
+            observer.error('Logoff-NOk');
+          })
+    })
+
+    
+  }
+
+  /**
    * Informa se o usuário está autenticado
    */
   public autenticado(): boolean {   
@@ -127,6 +149,14 @@ export class AutenticacaoService {
   private guardaTokenLocalStorage(idToken: string): void {
     this.tokenId = idToken;
     localStorage.setItem('tokenId',idToken);    
+  }
+
+  /**
+   * Remove o token de autenticação do localstorage
+   */
+  private removeTokenLocalStorage(): void {
+    localStorage.removeItem('tokenId');
+    this.tokenId = undefined;    
   }
 
 }

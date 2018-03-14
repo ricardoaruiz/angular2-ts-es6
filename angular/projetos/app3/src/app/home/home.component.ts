@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AutenticacaoService } from '../acesso/service/autenticacao.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * Construtor da classe do componente.
+   * 
+   * @param router 
+   * @param autenticacaoService 
+   */
+  constructor(
+    private router: Router,
+    private autenticacaoService: AutenticacaoService
+  ) { }
 
   ngOnInit() {
+  }
+  
+  /**
+   * Sair da aplicação
+   */
+  public sair(): void {
+    this.autenticacaoService.logoff()
+      .subscribe(
+        () => { this.router.navigate(['/'])},
+        (erro: Error) => { console.log(erro) }
+      )
   }
 
 }
