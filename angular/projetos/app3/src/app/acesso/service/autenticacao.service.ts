@@ -8,6 +8,11 @@ export class AutenticacaoService {
 
   constructor() { }
 
+  /**
+   * Realiza o cadastro de um novo usuário no Firebase.
+   * 
+   * @param usuario 
+   */
   public cadastrarUsuario(usuario: Usuario): void {
     console.log('Chegamos até o serviço ',usuario);    
 
@@ -32,6 +37,14 @@ export class AutenticacaoService {
       .catch( (erro: Error) => {
         console.log('Erro ao criar o usuário Auth', erro);
       })
+  }
+
+  /**
+   * Realiza a autenticação do usuário no Firebase.
+   * @param usuario 
+   */
+  public login(usuario: Usuario): void {
+    console.log('Serviço',usuario);
   }
 
 }
