@@ -1,10 +1,13 @@
 **App3-Iniciando o projeto Instagram Clone**
+
     `ng new app3`
 
 **App3-Instalando o Bootstrap, JQuery e Popper no projeto**
+
     `npm install --save bootstrap jquery popper.js`
 
 **App3-Criando os componentes Acesso, Banner, Login e Cadastro**
+
     `ng g c acesso`
     `ng g c acesso/banner`
     `ng g c acesso/cadastro`
@@ -25,29 +28,34 @@
 **App3-Criando e alterando o favicon**
     Utilizar os arquivos "arquivos/icone.png" e "arquivos/alterando-favicon.zip" para ter a parte visual do componente cadastro já pronto.
 
-    Utilizar o site "https://www.favicon-generator.org/" para gerar o favicon
+    Utilizar o site:
+    "https://www.favicon-generator.org/" para gerar o favicon
 
 **App3-Instalação e setup do módulo de animações do Angular 4 + web-animations-js**
     Rodar os dois comandos abaixo:
 
     `npm install --save @angular/animations`
+
     `npm install --save web-animations-js`
 
-    - Em 'app.module' importar o seguinte módulo:
+- Em 'app.module' importar o seguinte módulo:
 
-        `import { BrowserAnimationsModule } from '@angular/platform-browser/animations'`
+    `
+    import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+    `
 
-    - Colocar o módulo no metadado imports dessa mesma classe.
+- Colocar o módulo no metadado imports dessa mesma classe.
 
-    - No arquivo polyfills acrescentar a biblioteca web-animations-js, fazer um find no arquivo por "animations" e será encontrado um trecho já comentado.
-    Descomentar o trecho e ajustar para que fique da seguinte forma:
+- No arquivo polyfills acrescentar a biblioteca web-animations-js, fazer um find no arquivo por "animations" e será encontrado um trecho já comentado.
+Descomentar o trecho e ajustar para que fique da seguinte forma:
     
-        `import 'web-animations-js/web-animations.min.js'`
+    `import 'web-animations-js/web-animations.min.js'`
 
 **App3-Animations, triggers, states e styles**    
     O arquivo 'animations-triggers-state-styles.zip' contém as imagens que serão utilizadas e devem ser colocadas dentro de 'assets/banner'
 
 **App3-Incluindo o Firebase SDK no projeto**
+
     `npm install --save firebase`
 
 **App3-Conhecendo o console do Firebase**
@@ -58,6 +66,13 @@
 
 **App3-Cadastrando usuario no Firebase - Parte 1**
     O arquivo 'documentos/app3/12-CadastrandoUsuarioFirebaseParte1.mp4' é um video que mostra de maneira detalhada como criar usuário no Firebase
+
+**App3-Criando o componente HomeComponent e PublicacoesComponent**
+
+    `ng g c home`
+    `ng g c home/publicacoes`
+
+O arquivo 'aequivos/app3/componentes-home-publicacoes.zip', contém todo template estático já pronto para os novos componentes.
 
 # App3
 
