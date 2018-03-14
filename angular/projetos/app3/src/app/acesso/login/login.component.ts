@@ -57,18 +57,19 @@ export class LoginComponent implements OnInit {
     }
     this.autenticacaoService
       .autenticar(Usuario.buildFromFormGroup(this.formLogin))
-        .then ( (tokenId: string) => {
-          this.usuarioNaoEncontrado = false;
-          this.router.navigate(['/home']);
-        })
-        .catch ( (erro: string) => {
-          if (erro === 'auth/user-not-found') {
-            this.usuarioNaoEncontrado = true;
-          } else {
-            this.usuarioNaoEncontrado = false;
-          }  
-        })
-    
+        .subscribe( 
+            (resposta: string) => { 
+              this.usuarioNaoEncontrado = false;
+              this.router.navigate(['/home']);              
+             },
+            (erro: string) => { 
+              if (erro === 'auth/user-not-found') {
+                this.usuarioNaoEncontrado = true;
+              } else {
+                this.usuarioNaoEncontrado = false;              
+              }
+            }
+          )   
   }
 
   /**

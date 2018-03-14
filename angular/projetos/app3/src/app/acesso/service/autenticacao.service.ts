@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
 import * as firebase from 'firebase';
 
 import { Usuario } from '../model/usuario.model';
-import { Observable } from 'rxjs/Observable';
-import { reject } from 'q';
+import { Observer } from 'rxjs/Observer';
+
 
 @Injectable()
 export class AutenticacaoService {
@@ -18,11 +20,13 @@ export class AutenticacaoService {
    * 
    * @param usuario 
    */
-  public cadastrarUsuario(usuario: Usuario): Promise<any> {
+  public cadastrarUsuario(usuario: Usuario): Observable<string> {
     console.log('Chegamos até o serviço ',usuario);    
 
-    //Criando um usuário no Authentication do Firebase
-    return firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
+    return new Observable<string>( (observer: Observer<string>) => {
+      
+      //Criando um usuário no Authentication do Firebase
+      firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
       .then( (resposta: any) => {
 
         //remover a senha do atributo senha do objeto usuário
@@ -34,39 +38,44 @@ export class AutenticacaoService {
         firebase.database()
           .ref(`usuario_detalhe/${btoa(usuario.email)}`)
             .set(usuario)
-              .catch( (erro: Error) => {
-                console.log('Erro ao criar os dados do usuário Database', erro);
+              .then ( () => { observer.next('Ok'); })
+              .catch( (erro: firebase.FirebaseError) => {
+                observer.error(erro.code);
               })
 
       })
-      .catch( (erro: Error) => {
-        console.log('Erro ao criar o usuário Auth', erro);
+      .catch( (erro: firebase.FirebaseError) => {
+        observer.error(erro.code);
       })
+
+    })    
   }
 
   /**
    * Realiza a autenticação do usuário no Firebase.
    * @param usuario 
    */
-  public autenticar(usuario: Usuario): Promise<string> {
-    let promise: Promise<string>;
-
-    return new Promise<string>( (resolve, reject) => {
+  public autenticar(usuario: Usuario): Observable<string> {
+    
+    return new Observable( (observer: Observer<string>) => {
+      
       firebase.auth().signInWithEmailAndPassword(usuario.email, usuario.senha)
-        .then( (resposta: firebase.User) => {
-          firebase.auth().currentUser.getIdToken()
-            .then( (idToken: string) => {
-              this.tokenId = idToken;
-              resolve(this.tokenId);
-            })
-            .catch( (erro: firebase.FirebaseError) => {
-              reject(erro.message);
-            })
-        })
-        .catch( (erro: firebase.FirebaseError) => {
-          reject(erro.code);
-        })
+      .then( (resposta: firebase.User) => {
+        firebase.auth().currentUser.getIdToken()
+          .then( (idToken: string) => {
+            this.tokenId = idToken;
+            observer.next(this.tokenId);
+          })
+          .catch( (erro: firebase.FirebaseError) => {
+            observer.error(erro.message);
+          })
+      })
+      .catch( (erro: firebase.FirebaseError) => {
+        observer.error(erro.code);
+      })
+
     })
+
   }
 
 }

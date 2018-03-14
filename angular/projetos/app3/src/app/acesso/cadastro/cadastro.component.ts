@@ -16,6 +16,8 @@ export class CadastroComponent implements OnInit {
 
   public formCadastro: FormGroup;
 
+  public msgErroCadastro: string = undefined;
+
   /**
    * Construtor do componente
    * @param formBuilder 
@@ -60,7 +62,24 @@ export class CadastroComponent implements OnInit {
 
     this.autenticacaoService.cadastrarUsuario(
       Usuario.buildFromFormGroup(this.formCadastro))
-        .then ( () => this.irParaLogin() )
+        .subscribe ( 
+          (resposta: string) => this.irParaLogin(),
+          (erro: string) => { 
+            switch (erro) {
+              case 'auth/email-already-in-use':
+                this.msgErroCadastro = 'Usuário já cadastrado'  
+                break;
+              case 'auth/weak-password':
+                this.msgErroCadastro = 'Senha informada é muito fraca'
+                break;
+              default:
+                this.msgErroCadastro = 'Erro desconhecido'
+                break;
+            }
+            console.log(erro);
+            console.log(this.msgErroCadastro);
+          }
+        )
   }
 
   /**
