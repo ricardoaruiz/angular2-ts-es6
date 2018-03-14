@@ -43,8 +43,14 @@ export class AutenticacaoService {
    * Realiza a autenticação do usuário no Firebase.
    * @param usuario 
    */
-  public login(usuario: Usuario): void {
-    console.log('Serviço',usuario);
+  public autenticar(usuario: Usuario): void {
+    firebase.auth().signInWithEmailAndPassword(usuario.email, usuario.senha)
+      .then( (resposta: firebase.User) => {
+        console.log(resposta);
+      })
+      .catch( (erro: firebase.FirebaseError) => {
+        console.log(erro);
+      })
   }
 
 }

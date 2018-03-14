@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       })
       return;      
     }
-    this.autenticacaoService.login(Usuario.buildFromFormGroup(this.formLogin));
+    this.autenticacaoService.autenticar(Usuario.buildFromFormGroup(this.formLogin));
   }
 
   /**
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
   private buildFormularioLogin(): void {
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      senha: ['', [Validators.required]]
     });
   }
 
