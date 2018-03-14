@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   // Referência do formulário do template
   public formLogin: FormGroup;
 
-  // Indica se o usuário informado foi ou não encontrado no backend
-  public usuarioNaoEncontrado: boolean = false;
+  // Mensagens de erro do processo de login
+  public msgErroLogin: string = undefined;
 
   /**
    * Construtor da classe do componente.
@@ -59,14 +59,23 @@ export class LoginComponent implements OnInit {
       .autenticar(Usuario.buildFromFormGroup(this.formLogin))
         .subscribe( 
             (resposta: string) => { 
-              this.usuarioNaoEncontrado = false;
               this.router.navigate(['/home']);              
              },
             (erro: string) => { 
-              if (erro === 'auth/user-not-found') {
-                this.usuarioNaoEncontrado = true;
-              } else {
-                this.usuarioNaoEncontrado = false;              
+              console.log(erro)
+              switch (erro) {
+                case 'auth/user-not-found':
+                  this.msgErroLogin = 'O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.';  
+                  break;              
+                case 'auth/wrong-password':
+                  this.msgErroLogin = 'A senha do usuário não coincide.';  
+                  break;
+                case 'auth/too-many-requests':
+                  this.msgErroLogin = 'Excedeu o número de tentativas.';  
+                  break;
+                default:
+                  this.msgErroLogin = 'Erro desconhecido.';  
+                  break;
               }
             }
           )   
