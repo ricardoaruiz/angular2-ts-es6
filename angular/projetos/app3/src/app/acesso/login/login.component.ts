@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Usuario } from '../model/usuario.model';
 import { AutenticacaoService } from '../service/autenticacao.service';
@@ -14,8 +15,10 @@ export class LoginComponent implements OnInit {
   @Output()
   public mostrarCadastro: EventEmitter<string> = new EventEmitter<string>();
 
+  // Referência do formulário do template
   public formLogin: FormGroup;
 
+  // Indica se o usuário informado foi ou não encontrado no backend
   public usuarioNaoEncontrado: boolean = false;
 
   /**
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit {
    */
   constructor(
       private formBuilder: FormBuilder,
+      private router: Router,
       private autenticacaoService: AutenticacaoService
     ) { 
     this.buildFormularioLogin();
@@ -53,13 +57,12 @@ export class LoginComponent implements OnInit {
     }
     this.autenticacaoService
       .autenticar(Usuario.buildFromFormGroup(this.formLogin))
-        .then ( (resposta: any) => {
-          console.log('Login ok', resposta)
+        .then ( (tokenId: string) => {
           this.usuarioNaoEncontrado = false;
+          this.router.navigate(['/home']);
         })
-        .catch ( (erro: any) => {
-          console.log('login erro', erro);
-          if (erro.code === 'auth/user-not-found') {
+        .catch ( (erro: string) => {
+          if (erro === 'auth/user-not-found') {
             this.usuarioNaoEncontrado = true;
           } else {
             this.usuarioNaoEncontrado = false;

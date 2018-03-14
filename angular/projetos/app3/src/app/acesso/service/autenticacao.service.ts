@@ -2,9 +2,14 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 
 import { Usuario } from '../model/usuario.model';
+import { Observable } from 'rxjs/Observable';
+import { reject } from 'q';
 
 @Injectable()
 export class AutenticacaoService {
+
+  // Token retornado pela autenticação
+  public tokenId: string;
 
   constructor() { }
 
@@ -43,11 +48,25 @@ export class AutenticacaoService {
    * Realiza a autenticação do usuário no Firebase.
    * @param usuario 
    */
-  public autenticar(usuario: Usuario): Promise<any> {
-    return firebase.auth().signInWithEmailAndPassword(usuario.email, usuario.senha)
-      .then( (resposta: firebase.User) => {
-        console.log('Sucesso servico',resposta);
-      });
+  public autenticar(usuario: Usuario): Promise<string> {
+    let promise: Promise<string>;
+
+    return new Promise<string>( (resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(usuario.email, usuario.senha)
+        .then( (resposta: firebase.User) => {
+          firebase.auth().currentUser.getIdToken()
+            .then( (idToken: string) => {
+              this.tokenId = idToken;
+              resolve(this.tokenId);
+            })
+            .catch( (erro: firebase.FirebaseError) => {
+              reject(erro.message);
+            })
+        })
+        .catch( (erro: firebase.FirebaseError) => {
+          reject(erro.code);
+        })
+    })
   }
 
 }
