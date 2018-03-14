@@ -12,7 +12,7 @@ import { AutenticacaoService } from '../service/autenticacao.service';
 export class CadastroComponent implements OnInit {
 
   @Output()
-  public mostrarLogin: EventEmitter<string> = new EventEmitter<string>();
+  public mostrarLogin: EventEmitter<any> = new EventEmitter<any>();
 
   public formCadastro: FormGroup;
 
@@ -37,10 +37,10 @@ export class CadastroComponent implements OnInit {
    */
   private createForm(): void {
     this.formCadastro = this.formBuilder.group({
-      email: ['ricardo.almendro.ruiz@gmail.com', [Validators.required, Validators.email]],
-      nomeCompleto: ['Ricardo Ruiz'],
-      nomeUsuario: ['rruiz',[Validators.required]],
-      senha: ['123456',[Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      nomeCompleto: [''],
+      nomeUsuario: ['',[Validators.required]],
+      senha: ['',[Validators.required]]
     })
   }
 
@@ -48,7 +48,10 @@ export class CadastroComponent implements OnInit {
    * Chama o painel de login
    */
   public irParaLogin(): void {
-    this.mostrarLogin.emit('login');
+    this.mostrarLogin.emit({
+      painel : 'login', 
+      email: this.formCadastro.controls['email'].value
+    });
   }
 
   /**

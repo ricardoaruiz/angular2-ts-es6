@@ -116,13 +116,20 @@ export class AcessoComponent implements OnInit {
   // Indica se o formulário de cadastro está sendo exibido.
   public cadastro: boolean = false;
 
+  // Email do usuário
+  public email: string;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  public trocarPainel(painel: string): void {
-    this.cadastro = painel === 'cadastro' ? true : false
+  public trocarPainel(obj: any): void {
+    console.log(obj);
+    this.cadastro = obj.painel == 'cadastro' ? true : false;
+    if (obj.email) {
+      this.email = obj.email;
+    }
   }
 
   /**

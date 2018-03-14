@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,10 @@ import { AutenticacaoService } from '../service/autenticacao.service';
 export class LoginComponent implements OnInit {
 
   @Output()
-  public mostrarCadastro: EventEmitter<string> = new EventEmitter<string>();
+  public mostrarCadastro: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input()
+  public email: string = undefined;
 
   // Referência do formulário do template
   public formLogin: FormGroup;
@@ -36,13 +39,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formLogin.controls['email'].setValue(this.email);
   }
 
   /**
    * Método para mostrar o painel de cadastro de um novo usuário
    */
   public irParaCadastro(): void {
-    this.mostrarCadastro.emit('cadastro');
+    this.mostrarCadastro.emit({
+      painel: 'cadastro'
+    });
   }
 
   /**
@@ -72,8 +78,8 @@ export class LoginComponent implements OnInit {
    */
   private buildFormularioLogin(): void {
     this.formLogin = this.formBuilder.group({
-      email: ['ricardo.almendro.ruiz@gmail.com', [Validators.required, Validators.email]],
-      senha: ['123456', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required]]
     });
   }
 
