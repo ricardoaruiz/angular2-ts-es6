@@ -61,22 +61,8 @@ export class LoginComponent implements OnInit {
             (resposta: string) => { 
               this.router.navigate(['/home']);              
              },
-            (erro: string) => { 
-              console.log(erro)
-              switch (erro) {
-                case 'auth/user-not-found':
-                  this.msgErroLogin = 'O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.';  
-                  break;              
-                case 'auth/wrong-password':
-                  this.msgErroLogin = 'A senha do usuário não coincide.';  
-                  break;
-                case 'auth/too-many-requests':
-                  this.msgErroLogin = 'Excedeu o número de tentativas.';  
-                  break;
-                default:
-                  this.msgErroLogin = 'Erro desconhecido.';  
-                  break;
-              }
+            (msgErroLogin: string) => { 
+              this.msgErroLogin = msgErroLogin;
             }
           )   
   }

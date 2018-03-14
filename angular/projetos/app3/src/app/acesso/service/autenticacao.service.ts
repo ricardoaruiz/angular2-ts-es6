@@ -21,7 +21,8 @@ export class AutenticacaoService {
    * @param usuario 
    */
   public cadastrarUsuario(usuario: Usuario): Observable<string> {
-    console.log('Chegamos até o serviço ',usuario);    
+
+    let msgErroCadastro: string;
 
     return new Observable<string>( (observer: Observer<string>) => {
       
@@ -40,12 +41,23 @@ export class AutenticacaoService {
             .set(usuario)
               .then ( () => { observer.next('Ok'); })
               .catch( (erro: firebase.FirebaseError) => {
-                observer.error(erro.code);
+                observer.error('Erro ao gerar os dados auxiliares do usuário');
               })
 
       })
       .catch( (erro: firebase.FirebaseError) => {
-        observer.error(erro.code);
+        switch (erro.code) {
+          case 'auth/email-already-in-use':
+            msgErroCadastro = 'Usuário já cadastrado'  
+            break;
+          case 'auth/weak-password':
+            msgErroCadastro = 'Senha informada é muito fraca'
+            break;
+          default:
+            msgErroCadastro = 'Erro desconhecido'
+            break;
+        }                
+        observer.error(msgErroCadastro);
       })
 
     })    
@@ -57,21 +69,38 @@ export class AutenticacaoService {
    */
   public autenticar(usuario: Usuario): Observable<string> {
     
+    let msgErroLogin: string;
+
     return new Observable( (observer: Observer<string>) => {
       
       firebase.auth().signInWithEmailAndPassword(usuario.email, usuario.senha)
       .then( (resposta: firebase.User) => {
+
         firebase.auth().currentUser.getIdToken()
           .then( (idToken: string) => {
             this.tokenId = idToken;
             observer.next(this.tokenId);
           })
           .catch( (erro: firebase.FirebaseError) => {
-            observer.error(erro.message);
+            observer.error('Erro ao obter o token do usuário');
           })
       })
       .catch( (erro: firebase.FirebaseError) => {
-        observer.error(erro.code);
+        switch (erro.code) {
+          case 'auth/user-not-found':
+            msgErroLogin = 'O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.';  
+            break;              
+          case 'auth/wrong-password':
+            msgErroLogin = 'A senha do usuário não coincide.';  
+            break;
+          case 'auth/too-many-requests':
+            msgErroLogin = 'Excedeu o número de tentativas.';  
+            break;
+          default:
+            msgErroLogin = 'Erro desconhecido.';  
+            break;
+        }
+        observer.error(msgErroLogin);
       })
 
     })
