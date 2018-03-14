@@ -11,10 +11,11 @@ export class AutenticacaoGuard implements CanActivate{
     ){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        if (!this.autenticacaoService.autenticado()) {
+        let autenticado: boolean = this.autenticacaoService.autenticado();
+        if (!autenticado) {
             this.router.navigate(['/']);
         }
-        return this.autenticacaoService.autenticado();
+        return autenticado;
     }
 
 }
