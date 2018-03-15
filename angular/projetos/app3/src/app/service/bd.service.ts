@@ -19,6 +19,21 @@ export class BdService {
     this.salvarPostagem(publicacao);          
   }
 
+  /**
+   * Faz uma consulta na base de dados do firebase no recurso de publicações
+   * @param email
+   */
+  public consultaPublicacoes(email: string): any {
+    
+    firebase.database()
+      .ref(`publicacoes/${btoa(email)}`)
+        .once('value')
+          .then( (snapshot: firebase.database.DataSnapshot) => {
+            console.log(snapshot.val());
+          })
+
+  }
+
   /** 
   * Utilizamos a função btoa para transformar o email do usuário para a base64
   * pois os nós do firebase não aceitam caracteres especiais exemplo: @
