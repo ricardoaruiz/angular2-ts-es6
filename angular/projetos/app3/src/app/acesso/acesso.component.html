@@ -11,11 +11,23 @@
     informam quais são os métodos que serão executados no início e no fim da animação -->
     <div 
         class="col-sm-6 d-flex justify-content-start" 
+        [@animacao-painel-erro]="estadoPainelErro"
+        (@animacao-painel-erro.done)="voltaEstadoPainelErro()"
         [@animacao-painel]="estadoPainel"
-        (@animacao-painel.start)="inicioDaAnimacao()"
-        (@animacao-painel.done)="fimDaAnimacao()">
-      <app-login *ngIf="!cadastro" (mostrarCadastro)="trocarPainel($event)" [email]=email></app-login>
-      <app-cadastro *ngIf="cadastro" (mostrarLogin)="trocarPainel($event)"></app-cadastro>
+        (@animacao-painel.start)="inicioDaAnimacaoEntrada()"
+        (@animacao-painel.done)="fimDaAnimacaoEntrada()">
+
+      <app-login *ngIf="!cadastro" 
+        (animarEstadoErro)="colocaPainelEmEstadoDeErro()" 
+        (mostrarCadastro)="trocarPainel($event)" 
+        [email]=email>
+      </app-login>
+
+      <app-cadastro *ngIf="cadastro" 
+        (animarEstadoErro)="colocaPainelEmEstadoDeErro()" 
+        (mostrarLogin)="trocarPainel($event)">
+      </app-cadastro>
+      
     </div>  
   </div>
 </div>

@@ -102,7 +102,42 @@ deslizando o componente da esquerda para direita e vice-versa*/
             })
         ]))
       ])
-    ])    
+    ]),
+    trigger('animacao-painel-erro', [
+      state('animado-erro', style({
+        "opacity": 1,
+      })),
+      transition('* => animado-erro', [
+        style({
+          "transform": "translateX(10px)"
+        }),
+        animate('250ms 0s ease-in-out',
+          keyframes([
+            style({
+              "offset": 0.20,
+              "transform": "translateX(0px)"
+            }),
+            style({
+              "offset": 0.40,
+              "transform": "translateX(10px)"
+            }),
+            style({
+              "offset": 0.60,
+              "transform": "translateX(0px)"
+            }),
+            style({
+              "offset": 0.80,
+              "transform": "translateX(10px)"
+            }),            
+            style({
+              "offset": 1,
+              "transform": "translateX(0px)"
+            })            
+          ])
+        )
+      ])
+    ]
+    )
   ]
 })
 export class AcessoComponent implements OnInit {
@@ -110,8 +145,11 @@ export class AcessoComponent implements OnInit {
   // Estado para o banner.
   public estadoBanner:string = 'criado';
 
-  // Estado para o painel de login.
+  // Estado para os paineis de login e cadastro para animação de entrada
   public estadoPainel: string = 'criado';
+
+  // Estado para os paineis de login e cadastro para animação de erro
+  public estadoPainelErro: string = 'criado';
 
   // Indica se o formulário de cadastro está sendo exibido.
   public cadastro: boolean = false;
@@ -135,14 +173,31 @@ export class AcessoComponent implements OnInit {
   /**
    * Executado no ínicio da animação do painel de login
    */
-  public inicioDaAnimacao(): void {
+  public inicioDaAnimacaoEntrada(): void {
     console.log('Inicio da animação');
   }
 
   /** 
    * Executado no fim da animação do painel de login
   */
-  public fimDaAnimacao(): void {
+  public fimDaAnimacaoEntrada(): void {
     console.log('Fim da animação');
   }  
+
+  /**
+   * Método chamado pelos componentes filhos para colocar
+   * o painel em estado de erro e assim iniciar a animação.
+   */
+  public colocaPainelEmEstadoDeErro(): void {
+    this.estadoPainelErro = 'animado-erro';
+  }
+
+  /**
+   * Método executado no final da animação do erro
+   * para tirar o painel do estado de erro.
+   */
+  public voltaEstadoPainelErro(): void {
+    this.estadoPainelErro = 'criado';
+  }
+
 }

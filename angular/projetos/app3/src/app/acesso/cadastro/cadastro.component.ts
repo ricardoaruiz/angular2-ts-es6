@@ -14,6 +14,9 @@ export class CadastroComponent implements OnInit {
   @Output()
   public mostrarLogin: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output()
+  public animarEstadoErro: EventEmitter<void> = new EventEmitter<void>();
+
   public formCadastro: FormGroup;
 
   public msgErroCadastro: string = undefined;
@@ -40,7 +43,7 @@ export class CadastroComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       nomeCompleto: [''],
       nomeUsuario: ['',[Validators.required]],
-      senha: ['',[Validators.required]]
+      senha: ['',[Validators.required, Validators.minLength(6)]]
     })
   }
 
@@ -69,8 +72,23 @@ export class CadastroComponent implements OnInit {
           (resposta: string) => this.irParaLogin(),
           (msgErroCadastroUsuario: string) => { 
             this.msgErroCadastro = msgErroCadastroUsuario;
+            this.animarEstadoErro.emit();
           }
         )
+  }
+
+  /**
+   * Indica se o botão de confirmar cadastro deve estar habilitado ou não.
+   */
+  public isBotaoCadastroHabilitado(): boolean {    
+
+    let campos: string[] = Object.keys(this.formCadastro.controls);
+
+    for(let i=0; i<campos.length; i++) {
+      if (this.formCadastro.controls[campos[i]].invalid) return false;
+    }
+
+    return true;
   }
 
   /**

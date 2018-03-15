@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   @Output()
   public mostrarCadastro: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output()
+  public animarEstadoErro: EventEmitter<void> = new EventEmitter<void>();
+
   @Input()
   public email: string = undefined;
 
@@ -72,8 +75,16 @@ export class LoginComponent implements OnInit {
              },
             (msgErroLogin: string) => { 
               this.msgErroLogin = msgErroLogin;
+              this.animarEstadoErro.emit();
             }
           )   
+  }
+
+  /**
+   * Controla se o botão para login estará habilitado ou não
+   */
+  public isBotaoLoginHabilitado(): boolean {
+    return this.formLogin.controls['email'].valid && this.formLogin.controls['senha'].valid
   }
 
   /**
@@ -82,7 +93,7 @@ export class LoginComponent implements OnInit {
   private buildFormularioLogin(): void {
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required]]
+      senha: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 

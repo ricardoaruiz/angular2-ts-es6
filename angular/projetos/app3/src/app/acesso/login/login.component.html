@@ -19,7 +19,7 @@
           formControlName="senha"
         >
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block">Entrar</button>
+      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="!isBotaoLoginHabilitado()">Entrar</button>
     </form>
     <hr />
 
