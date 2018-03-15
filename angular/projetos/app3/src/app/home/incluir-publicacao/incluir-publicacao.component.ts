@@ -19,7 +19,7 @@ export class IncluirPublicacaoComponent implements OnInit {
   public formularioNovaPublicacao: FormGroup;
 
   // Imagem a ser feito upload para ser publicada
-  public imagem: any;
+  private imagem: any;
 
   /**
    * Construtor da classe do componente
@@ -48,7 +48,8 @@ export class IncluirPublicacaoComponent implements OnInit {
   public publicar(): void {
     this.bdService.publicar({
       email: this.email,
-      titulo: this.formularioNovaPublicacao.value.titulo
+      titulo: this.formularioNovaPublicacao.value.titulo,
+      imagem: this.imagem
     });
   }
 
@@ -57,7 +58,7 @@ export class IncluirPublicacaoComponent implements OnInit {
    * @param  
    */
   public preparaImagemUpload(event: Event): void {
-     console.log((<HTMLInputElement>event.target).files);    
+     this.imagem = (<HTMLInputElement>event.target).files[0];    
   }
 
   /**
