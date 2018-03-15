@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class ProgressoService {
 
   public static readonly STATUS = {
+    PENDENTE: 'pendente',
     ANDAMENTO: 'andamento',
     ERRO: 'erro',
     CONCLUIDO: 'concluido'

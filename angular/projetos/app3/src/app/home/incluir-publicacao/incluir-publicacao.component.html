@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="incluirPublicacaoModal" tabindex="-1" role="dialog" aria-labelledby="incluirPublicacaoModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" *ngIf="progressoPublicacao === STATUS_PUBLICACAO.PENDENTE">
 
       <form novalidate [formGroup]="formularioNovaPublicacao" (ngSubmit)="publicar()">
 
@@ -22,7 +22,7 @@
             class="form-control" 
             accept="image/*"
             (change)="preparaImagemUpload($event)"
-          />
+          />        
 
           <input type="text" 
                  placeholder="Título da publicação" 
@@ -40,5 +40,44 @@
       </form>
 
     </div>
+
+    <div class="modal-content" *ngIf="progressoPublicacao === STATUS_PUBLICACAO.ANDAMENTO">
+  
+        <!-- Título -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Publicação em andamento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Corpo -->
+        <div class="modal-body">
+          Progresso {{porcentagemUpload}}
+        </div>        
+
+    </div>
+
+    <div class="modal-content" *ngIf="progressoPublicacao === STATUS_PUBLICACAO.CONCLUIDO">
+
+      <!-- Título -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Publicação realizada com sucesso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Corpo -->
+      <div class="modal-body">
+        Sua publicação foi realizada com sucesso.
+      </div>
+
+      <!-- Botões -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>      
+      
+    </div>
+  
   </div>
-</div>

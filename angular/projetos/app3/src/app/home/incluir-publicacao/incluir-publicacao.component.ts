@@ -12,7 +12,7 @@ import { ProgressoService } from '../../service/progresso.service';
 @Component({
   selector: 'app-incluir-publicacao',
   templateUrl: './incluir-publicacao.component.html',
-  styleUrls: ['./incluir-publicacao.component.css']
+  styleUrls: ['./incluir-publicacao.component.css'],
 })
 export class IncluirPublicacaoComponent implements OnInit {
 
@@ -24,6 +24,13 @@ export class IncluirPublicacaoComponent implements OnInit {
 
   // Imagem a ser feito upload para ser publicada
   private imagem: any;
+
+  // Status de progresso da publicação
+  public progressoPublicacao: string = ProgressoService.STATUS.PENDENTE;
+
+  public readonly STATUS_PUBLICACAO: any = ProgressoService.STATUS;
+  
+  public porcentagemUpload: number;
 
   /**
    * Construtor da classe do componente
@@ -84,14 +91,19 @@ export class IncluirPublicacaoComponent implements OnInit {
     let continua = new Subject();
     continua.next(true);
 
-    let acompanhamentoUpload = Observable.interval(1500);
+    let acompanhamentoUpload = Observable.interval(500);
     acompanhamentoUpload
       .takeUntil(continua)
       .subscribe( () => {
-        // console.log(this.progressoService.status);
-        // console.log(this.progressoService.estado);
+
+        //Atuaiza o status
+        this.progressoPublicacao = ProgressoService.STATUS.ANDAMENTO;
+
+        //Atualiza o percentual de upload
+        this.porcentagemUpload = Math.round((this.progressoService.estado.bytesTransferred / this.progressoService.estado.totalBytes) * 100);
 
         if(this.progressoService.status === ProgressoService.STATUS.CONCLUIDO) {
+          this.progressoPublicacao = ProgressoService.STATUS.CONCLUIDO;
           continua.next(false);
         }
       })
