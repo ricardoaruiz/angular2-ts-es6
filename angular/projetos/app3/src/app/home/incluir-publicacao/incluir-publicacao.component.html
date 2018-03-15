@@ -4,22 +4,39 @@
     <div class="modal-content">
 
       <form novalidate [formGroup]="formularioNovaPublicacao" (ngSubmit)="publicar()">
+
+        <!-- Título -->
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Criar uma Publicação</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
+        <!-- Corpo -->
         <div class="modal-body">
+          <!-- Campos do tipo input=file não funcionam com ReactiveForms então teremos que fazer
+          um bind das informações desse campo -->
+          <input 
+            type="file" 
+            class="form-control" 
+            accept="image/*"
+            (change)="preparaImagemUpload($event)"
+          />
+
           <input type="text" 
                  placeholder="Título da publicação" 
                  class="form-control"
                  formControlName="titulo">
         </div>
+
+
+        <!-- Botões -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           <button type="submit" class="btn btn-primary">Publicar</button>
         </div>
+
       </form>
 
     </div>

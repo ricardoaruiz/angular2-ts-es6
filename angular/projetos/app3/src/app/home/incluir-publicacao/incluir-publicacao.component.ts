@@ -18,6 +18,9 @@ export class IncluirPublicacaoComponent implements OnInit {
   // Formulário de publicação
   public formularioNovaPublicacao: FormGroup;
 
+  // Imagem a ser feito upload para ser publicada
+  public imagem: any;
+
   /**
    * Construtor da classe do componente
    * @param formBuilder
@@ -47,6 +50,14 @@ export class IncluirPublicacaoComponent implements OnInit {
       email: this.email,
       titulo: this.formularioNovaPublicacao.value.titulo
     });
+  }
+
+  /**
+   * Pega os dados do input da imagem a ser feito o upload
+   * @param  
+   */
+  public preparaImagemUpload(event: Event): void {
+     console.log((<HTMLInputElement>event.target).files);    
   }
 
   /**
