@@ -100,7 +100,9 @@ export class IncluirPublicacaoComponent implements OnInit {
         this.progressoPublicacao = ProgressoService.STATUS.ANDAMENTO;
 
         //Atualiza o percentual de upload
-        this.porcentagemUpload = Math.round((this.progressoService.estado.bytesTransferred / this.progressoService.estado.totalBytes) * 100);
+        if (this.progressoService.estado) {
+          this.porcentagemUpload = Math.round((this.progressoService.estado.bytesTransferred / this.progressoService.estado.totalBytes) * 100);
+        }
 
         if(this.progressoService.status === ProgressoService.STATUS.CONCLUIDO) {
           this.progressoPublicacao = ProgressoService.STATUS.CONCLUIDO;

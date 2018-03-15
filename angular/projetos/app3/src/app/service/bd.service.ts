@@ -11,18 +11,43 @@ export class BdService {
     private progressoService: ProgressoService
   ) { }
 
+  /**
+   * Faz uma nova publicação
+   * @param publicacao
+   */
   public publicar(publicacao: any): void {
-    console.log('Service', publicacao);
-    
-    let nomeImagem = Date.now();
+    this.salvarPostagem(publicacao);          
+  }
 
-    //Faz o upload da imagem selecionada para o storage do Firebase
-    //nesse exemplo assumimos que o nome da imagem armazenada será o 
-    //timestamp do momento do upload.
+  /** 
+  * Utilizamos a função btoa para transformar o email do usuário para a base64
+  * pois os nós do firebase não aceitam caracteres especiais exemplo: @
+  * Utilizamos o método push do database do firebase que permite inserir várias
+  * itens para o nó informado.
+  */
+  private salvarPostagem(publicacao: any): void {
+    firebase.database()
+      .ref(`publicacoes/${btoa(publicacao.email)}`)
+        .push({
+          titulo: publicacao.titulo
+        })
+        .then( (resposta: firebase.database.ThenableReference) => {
+          this.uploadImagem(publicacao.imagem, resposta.key)
+        })
+  }
+
+  /** 
+  * Faz o upload da imagem selecionada para o storage do Firebase
+  * nesse exemplo assumimos que o nome da imagem armazenada será o 
+  * timestamp do momento do upload.
+  */
+  private uploadImagem(imagem: any, key: string): void {
+    let nomeImagem = key;
+
     firebase.storage()
       .ref()
         .child(`imagens/${nomeImagem}`)
-          .put(publicacao.imagem)
+          .put(imagem)
             // Método (Listener) on para ficar escutando um evento do firebase
             //nesse caso estamos escutando o evento "firebase.storage.TaskEvent.STATE_CHANGED"
             .on(firebase.storage.TaskEvent.STATE_CHANGED,
@@ -40,18 +65,6 @@ export class BdService {
                 this.progressoService.status = ProgressoService.STATUS.CONCLUIDO
               }
             )
-          
-
-    // Utilizamos a função btoa para transformar o email do usuário para a base64
-    //pois os nós do firebase não aceitam caracteres especiais exemplo: @
-    //Utilizamos o método push do database do firebase que permite inserir várias
-    //itens para o nó informado.
-    firebase.database()
-      .ref(`publicacoes/${btoa(publicacao.email)}`)
-        .push({
-          titulo: publicacao.titulo
-
-        })
   }
 
 }
