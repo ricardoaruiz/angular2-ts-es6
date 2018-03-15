@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/Rx';
 
 import * as firebase from 'firebase';
 
@@ -54,8 +57,7 @@ export class IncluirPublicacaoComponent implements OnInit {
       imagem: this.imagem
     });
 
-    console.log(this.progressoService.status);
-    console.log(this.progressoService.estado);
+    this.acompanharProgressoUpload();
   }
 
   /**
@@ -75,4 +77,20 @@ export class IncluirPublicacaoComponent implements OnInit {
     })
   }
 
+  private acompanharProgressoUpload(): void {
+    let continua = new Subject();
+    continua.next(true);
+
+    let acompanhamentoUpload = Observable.interval(1500);
+    acompanhamentoUpload
+      .takeUntil(continua)
+      .subscribe( () => {
+        console.log(this.progressoService.status);
+        console.log(this.progressoService.estado);
+
+        if(this.progressoService.status === 'concluido') {
+          continua.next(false);
+        }
+      })
+  }
 }
