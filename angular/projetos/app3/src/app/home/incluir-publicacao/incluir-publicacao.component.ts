@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import * as firebase from 'firebase';
+
 import { BdService } from '../../service/bd.service';
 
 @Component({
@@ -9,6 +11,9 @@ import { BdService } from '../../service/bd.service';
   styleUrls: ['./incluir-publicacao.component.css']
 })
 export class IncluirPublicacaoComponent implements OnInit {
+
+  // Email do usuario logado recuperado do firebase
+  public email: string = undefined;
 
   // Formulário de publicação
   public formularioNovaPublicacao: FormGroup;
@@ -24,13 +29,24 @@ export class IncluirPublicacaoComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+
+    //Inscrição no serviço do firebase que retorna o objeto do usuario logado
+    //a cada alteração que ocorrer com o mesmo.
+    firebase.auth().onAuthStateChanged( (user: firebase.User) => {
+      if(user) {
+        this.email = user.email;
+      }
+    })
   }
 
   /**
    * Realiza uma nova publicação
    */
   public publicar(): void {
-    this.bdService.publicar();
+    this.bdService.publicar({
+      email: this.email,
+      titulo: this.formularioNovaPublicacao.value.titulo
+    });
   }
 
   /**

@@ -41,6 +41,9 @@ export class AutenticacaoService {
         //path usuario_detalhe/<email do usuario>
         //Não pode ter caracter especial nos nós do firebase
         //então vamos criptografar o email com a funcao "btoa" (atob volta a criptografia)
+
+        //Utilizamos o método set do database do firebase que permite um único registro
+        //para o nó informado
         firebase.database()
           .ref(`usuario_detalhe/${btoa(usuario.email)}`)
             .set(usuario)
