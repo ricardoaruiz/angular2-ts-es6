@@ -28,16 +28,16 @@ export class BdService {
             .on(firebase.storage.TaskEvent.STATE_CHANGED,
               //acompanhamento do progresso do upload
               ( snapshot: any ) => {
-                this.progressoService.status = 'andamento'
+                this.progressoService.status = ProgressoService.STATUS.ANDAMENTO
                 this.progressoService.estado = snapshot;
               },
               //tratamento de erro
               ( erro: Error) => {
-                this.progressoService.status = 'erro'
+                this.progressoService.status = ProgressoService.STATUS.ERRO
               },
               //executado na finalização do upload
               () => {
-                this.progressoService.status = 'concluido'
+                this.progressoService.status = ProgressoService.STATUS.CONCLUIDO
               }
             )
           

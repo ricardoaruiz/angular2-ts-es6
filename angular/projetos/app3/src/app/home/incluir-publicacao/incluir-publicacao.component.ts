@@ -77,6 +77,9 @@ export class IncluirPublicacaoComponent implements OnInit {
     })
   }
 
+  /**
+   * Faz o acompanhamento do processo de upload da imagem
+   */
   private acompanharProgressoUpload(): void {
     let continua = new Subject();
     continua.next(true);
@@ -85,10 +88,10 @@ export class IncluirPublicacaoComponent implements OnInit {
     acompanhamentoUpload
       .takeUntil(continua)
       .subscribe( () => {
-        console.log(this.progressoService.status);
-        console.log(this.progressoService.estado);
+        // console.log(this.progressoService.status);
+        // console.log(this.progressoService.estado);
 
-        if(this.progressoService.status === 'concluido') {
+        if(this.progressoService.status === ProgressoService.STATUS.CONCLUIDO) {
           continua.next(false);
         }
       })
