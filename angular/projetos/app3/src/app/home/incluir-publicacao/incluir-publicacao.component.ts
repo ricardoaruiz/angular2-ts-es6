@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { BdService } from '../../service/bd.service';
+
 @Component({
   selector: 'app-incluir-publicacao',
   templateUrl: './incluir-publicacao.component.html',
@@ -15,7 +17,10 @@ export class IncluirPublicacaoComponent implements OnInit {
    * Construtor da classe do componente
    * @param formBuilder
    */
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private bdService: BdService
+  ) { }
 
   ngOnInit() {
     this.buildForm();
@@ -25,7 +30,7 @@ export class IncluirPublicacaoComponent implements OnInit {
    * Realiza uma nova publicação
    */
   public publicar(): void {
-    console.log(this.formularioNovaPublicacao.value);
+    this.bdService.publicar();
   }
 
   /**
