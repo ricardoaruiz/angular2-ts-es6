@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import * as firebase from 'firebase';
 
 import { BdService } from '../../service/bd.service';
+import { ProgressoService } from '../../service/progresso.service';
 
 @Component({
   selector: 'app-incluir-publicacao',
@@ -27,7 +28,8 @@ export class IncluirPublicacaoComponent implements OnInit {
    */
   constructor(
     private formBuilder: FormBuilder,
-    private bdService: BdService
+    private bdService: BdService,
+    private progressoService: ProgressoService
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,9 @@ export class IncluirPublicacaoComponent implements OnInit {
       titulo: this.formularioNovaPublicacao.value.titulo,
       imagem: this.imagem
     });
+
+    console.log(this.progressoService.status);
+    console.log(this.progressoService.estado);
   }
 
   /**

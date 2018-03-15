@@ -19,6 +19,7 @@ import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-pu
 //Serviços
 import { AutenticacaoService } from './acesso/service/autenticacao.service';
 import { BdService } from './service/bd.service';
+import { ProgressoService } from './service/progresso.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BdService } from './service/bd.service';
   ],
   providers: [
     AutenticacaoService,
-    BdService
+    BdService,
+    ProgressoService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 
 import * as firebase from 'firebase';
 
+import { ProgressoService } from './progresso.service';
+
 @Injectable()
 export class BdService {
 
-  constructor() { }
+  constructor(
+    private progressoService: ProgressoService
+  ) { }
 
   public publicar(publicacao: any): void {
     console.log('Service', publicacao);
@@ -19,20 +23,22 @@ export class BdService {
       .ref()
         .child(`imagens/${nomeImagem}`)
           .put(publicacao.imagem)
-            // Método on para ficar escutando um evento do firebase
+            // Método (Listener) on para ficar escutando um evento do firebase
             //nesse caso estamos escutando o evento "firebase.storage.TaskEvent.STATE_CHANGED"
             .on(firebase.storage.TaskEvent.STATE_CHANGED,
               //acompanhamento do progresso do upload
               ( snapshot: any ) => {
-                console.log('Acompanhamento do upload:', snapshot);
+                this.progressoService.status = 'andamento'
+                this.progressoService.estado = snapshot;
+                console.log('Snapshot capturado no on()', snapshot);
               },
               //tratamento de erro
               ( erro: Error) => {
-                console.log(erro)
+                this.progressoService.status = 'erro'
               },
               //executado na finalização do upload
               () => {
-                console.log('Upload completo');                
+                this.progressoService.status = 'concluido'
               }
             )
           
