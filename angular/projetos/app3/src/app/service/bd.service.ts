@@ -29,9 +29,23 @@ export class BdService {
       .ref(`publicacoes/${btoa(email)}`)
         .once('value')
           .then( (snapshot: firebase.database.DataSnapshot) => {
-            console.log(snapshot.val());
-          })
+            
+            let publicacoes: Array<any> = [];
 
+            snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {
+              
+              let publicacao = childSnapshot.val();
+
+              firebase.storage().ref()
+                .child(`imagens/${childSnapshot.key}`)
+                  .getDownloadURL()
+                    .then( (url: string) => {
+                      publicacao.url_imagem = url; 
+                      publicacoes.push(publicacao);
+                    })               
+            });
+            console.log(publicacoes);
+          });
   }
 
   /** 
