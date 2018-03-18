@@ -14,6 +14,8 @@ export class PublicacoesComponent implements OnInit {
   // Email do usuário logado recebido do firebase
   private email: string;
 
+  public publicacoes: any;
+
   constructor(
     private bdService: BdService
   ) { }
@@ -26,7 +28,10 @@ export class PublicacoesComponent implements OnInit {
   }
 
   public atualizarTimeLine(): void {
-    this.bdService.consultaPublicacoes(this.email);
+    this.bdService.consultaPublicacoes(this.email)
+      .then( (publicacoes: any) => {
+        this.publicacoes = publicacoes;
+      } )
   }
 
 }

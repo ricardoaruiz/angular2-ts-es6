@@ -24,16 +24,41 @@ export class BdService {
    * Faz uma consulta na base de dados do firebase no recurso de publicações
    * @param email
    */
-  public consultaPublicacoes(email: string): any {
+  public consultaPublicacoes(email: string): Promise<any> {
     
-    firebase.database()
+    return new Promise( (resolve, reject) => {
+
+      firebase.database()
       .ref(`publicacoes/${btoa(email)}`)
         .once('value')
           .then( (snapshot: firebase.database.DataSnapshot) => {
             
-            let publicacoes: Array<any> = this.consultaDadosImagemParaDownload(snapshot, email);
-            console.log(publicacoes);
+            let publicacoes: Array<any> = [];
+
+            snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {              
+              let publicacao = childSnapshot.val();
+              firebase.storage().ref()
+              .child(`imagens/${childSnapshot.key}`)
+                .getDownloadURL()
+                  .then( (url: string) => {
+                    publicacao.url_imagem = url; 
+        
+                    //consultar o nome do usuario
+                    firebase.database().ref(`usuario_detalhe/${btoa(email)}`)
+                    .once('value')
+                      .then( (snapshot: firebase.database.DataSnapshot) => {
+                        publicacao.nome_usuario = snapshot.val().nomeCompleto;
+                      })
+
+                    publicacoes.push(publicacao);
+                  })  
+              })
+              resolve(publicacoes);
           });
+
+    })
+
+    
   }
 
   /** 
@@ -82,35 +107,6 @@ export class BdService {
                 this.progressoService.status = ProgressoService.STATUS.CONCLUIDO
               }
             )
-  }
-
-  public consultaDadosImagemParaDownload(snapshot: firebase.database.DataSnapshot, email: string): Array<any> {
-    let publicacoes: Array<any> = [];
-    snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {              
-      let publicacao = childSnapshot.val();
-      firebase.storage().ref()
-      .child(`imagens/${childSnapshot.key}`)
-        .getDownloadURL()
-          .then( (url: string) => {
-            publicacao.url_imagem = url; 
-
-            //consultar o nome do usuario
-            this.consultarUsuarioPublicacao(email, publicacao);
-
-            publicacoes.push(publicacao);
-          })  
-      })
-      return publicacoes;
-  }
-
-  public consultarUsuarioPublicacao(email: string, publicacao: any): void {
-    //consultar o nome do usuario
-    firebase.database().ref(`usuario_detalhe/${btoa(email)}`)
-    .once('value')
-      .then( (snapshot: firebase.database.DataSnapshot) => {
-        publicacao.nome_usuario = snapshot.val().nomeCompleto;
-      })
-
   }
 
 }
