@@ -35,7 +35,7 @@ export class BdService {
             
             let publicacoes: Array<any> = [];
 
-            snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {              
+             snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {
               let publicacao = childSnapshot.val();
 
               // Busca os dados da imagem para ser exibida na timeline
@@ -54,8 +54,9 @@ export class BdService {
 
                     publicacoes.push(publicacao);
                   })  
+                resolve(publicacoes);
+                return false;
               })
-              resolve(publicacoes);
           });
 
     })
