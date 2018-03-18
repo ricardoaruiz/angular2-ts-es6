@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 
 import { ProgressoService } from './progresso.service';
+import { Usuario } from '../acesso/model/usuario.model';
 
 @Injectable()
 export class BdService {
@@ -30,20 +31,7 @@ export class BdService {
         .once('value')
           .then( (snapshot: firebase.database.DataSnapshot) => {
             
-            let publicacoes: Array<any> = [];
-
-            snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {
-              
-              let publicacao = childSnapshot.val();
-
-              firebase.storage().ref()
-                .child(`imagens/${childSnapshot.key}`)
-                  .getDownloadURL()
-                    .then( (url: string) => {
-                      publicacao.url_imagem = url; 
-                      publicacoes.push(publicacao);
-                    })               
-            });
+            let publicacoes: Array<any> = this.consultaDadosImagemParaDownload(snapshot, email);
             console.log(publicacoes);
           });
   }
@@ -94,6 +82,35 @@ export class BdService {
                 this.progressoService.status = ProgressoService.STATUS.CONCLUIDO
               }
             )
+  }
+
+  public consultaDadosImagemParaDownload(snapshot: firebase.database.DataSnapshot, email: string): Array<any> {
+    let publicacoes: Array<any> = [];
+    snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {              
+      let publicacao = childSnapshot.val();
+      firebase.storage().ref()
+      .child(`imagens/${childSnapshot.key}`)
+        .getDownloadURL()
+          .then( (url: string) => {
+            publicacao.url_imagem = url; 
+
+            //consultar o nome do usuario
+            this.consultarUsuarioPublicacao(email, publicacao);
+
+            publicacoes.push(publicacao);
+          })  
+      })
+      return publicacoes;
+  }
+
+  public consultarUsuarioPublicacao(email: string, publicacao: any): void {
+    //consultar o nome do usuario
+    firebase.database().ref(`usuario_detalhe/${btoa(email)}`)
+    .once('value')
+      .then( (snapshot: firebase.database.DataSnapshot) => {
+        publicacao.nome_usuario = snapshot.val().nomeCompleto;
+      })
+
   }
 
 }
