@@ -37,6 +37,8 @@ export class BdService {
 
             snapshot.forEach( (childSnapshot: firebase.database.DataSnapshot) => {              
               let publicacao = childSnapshot.val();
+
+              // Busca os dados da imagem para ser exibida na timeline
               firebase.storage().ref()
               .child(`imagens/${childSnapshot.key}`)
                 .getDownloadURL()

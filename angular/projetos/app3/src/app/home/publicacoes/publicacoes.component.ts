@@ -14,7 +14,9 @@ export class PublicacoesComponent implements OnInit {
   // Email do usuário logado recebido do firebase
   private email: string;
 
-  public publicacoes: any;
+  public publicacoes: any[];
+
+  public teste: string = 'XTeste'
 
   constructor(
     private bdService: BdService
