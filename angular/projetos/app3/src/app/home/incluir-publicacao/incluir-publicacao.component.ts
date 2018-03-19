@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -31,6 +31,9 @@ export class IncluirPublicacaoComponent implements OnInit {
   public readonly STATUS_PUBLICACAO: any = ProgressoService.STATUS;
   
   public porcentagemUpload: number;
+
+  @Output()
+  public atualizarTimeline: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Construtor da classe do componente
@@ -106,6 +109,9 @@ export class IncluirPublicacaoComponent implements OnInit {
 
         if(this.progressoService.status === ProgressoService.STATUS.CONCLUIDO) {
           this.progressoPublicacao = ProgressoService.STATUS.CONCLUIDO;
+
+          this.atualizarTimeline.emit();
+
           continua.next(false);
         }
       })
