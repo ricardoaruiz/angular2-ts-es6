@@ -78,6 +78,11 @@ export class IncluirPublicacaoComponent implements OnInit {
      this.imagem = (<HTMLInputElement>event.target).files[0];    
   }
 
+  public voltarStatusPendente(): void {
+    this.formularioNovaPublicacao.reset();
+    this.progressoPublicacao = ProgressoService.STATUS.PENDENTE;
+  }
+
   /**
    * Constroi a referência do formulário de publicação
    */

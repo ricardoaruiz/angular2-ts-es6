@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AutenticacaoService } from '../acesso/service/autenticacao.service';
+import { PublicacoesComponent } from './publicacoes/publicacoes.component';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,9 @@ import { AutenticacaoService } from '../acesso/service/autenticacao.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('publicacoes')
+  public publicacoesComponent: PublicacoesComponent;
 
   /**
    * Construtor da classe do componente.
@@ -36,8 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   public atualizarTimelinePai(): void {
-    console.log('Chegamos até aqui');
-    
+    this.publicacoesComponent.atualizarTimeLine();    
   }
 
 }
