@@ -30,6 +30,7 @@ export class BdService {
 
       firebase.database()
       .ref(`publicacoes/${btoa(email)}`)
+        .orderByKey()
         .once('value')
           .then( (snapshot: firebase.database.DataSnapshot) => {
             
